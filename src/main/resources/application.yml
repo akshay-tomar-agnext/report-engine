@@ -1,0 +1,455 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate.ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+
+  datasource.driverClassName: com.mysql.cj.jdbc.Driver
+  profiles.active: local
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: akshay.tomar@agnext.in
+    password: avxiyvcgfwfdugkv
+    properties.mail.smtp.auth: true
+    properties.mail.smtp.starttls.enable: true
+
+
+server:
+  servlet.context-path: /
+  port: 7006
+
+
+analyticsconfig:
+  analytics:
+    moisturecontent:
+      - moisture
+      - moisture content
+      - moisturecontent
+      - Moisture
+      - MoistureContent
+
+    foreignmatter:
+      - foreignmatter
+      - foreignmattera
+      - foreignmatters
+      - fm
+      - f m
+      - foreign matters
+      - foreign matter
+      - Foreign_Matters
+      - Foreign_matters
+      - foreign_matters
+      - Foreign_Matter
+      - foreign_matter
+
+    foreignmatterorganic:
+      - foreign_matter_organic
+
+    admixture:
+      - admixture
+      - ad-mixture
+      - varietal admixture
+      - varietal Admixture
+      - Varietal admixture
+      - Varietal Admixture
+
+    damaged:
+      - damaged
+      - damaged pods
+      - damaged pulses
+      - damaged seed
+      - damaged_seed
+      - damaged seeds
+      - damaged_seed
+      - Damaged Seed
+      - Damaged/Slighthly Damaged Grains
+      - damaged/slightly damaged grains
+      - Damaged/slighthly damaged Grains
+      - Damaged/Slighthly damaged grains
+      - Damaged/Slighthly damaged
+
+    weevilled:
+      - weevilled
+      - weevilled pulses
+      - weevilled pods
+      - Weevilled
+      - Weevilled Seed
+      - weevilled seed
+      - weevilled_seed
+
+    shrivelledandimmature:
+      - shrivelled & immature
+      - Shrivelled & immature
+      - shrivelled & immature pulses
+      - shrivelled_and_immature pulses
+      - shrivelledimmaturepulses
+      - Shrivelled & immature pulses
+      - shrivelled&immature
+      - shrivelledandimmature
+      - shrivelledAndImmature
+      - shrivelled_and_immature
+      - shrivelled & immature pods
+      - Shrivelled & immature pods
+      - shrivelled_and_immature pods
+      - shrivelled&immaturepulses
+
+    slightlydamaged:
+      - slightlydamaged
+      - Slightlydamaged
+      - slightly damage pulses
+      - slightly damage pods
+      - slightlydamagepulses
+      - slightlydamagepods
+      - slightly damaged pulses
+      - slightly_damaged
+      - slightly damaged
+
+    podsofothervariety:
+      - podsofothervariety
+      - pods of other
+      - pods of other varieties
+      - podsofothervariety
+      - podsofothervar
+
+    shelling:
+      - Shelling
+      - shelling
+      - shelling kernel
+      - shellingkernel
+      - Shelling kernel
+      - Shelling Kernel
+      - ShellingKernel
+      - shell
+      - Shelling Weight
+
+    damagedandweevilled:
+      - damaged & weevilled
+      - damagedandweevilled
+      - damaged_and_weevilled
+      - damaged and weevilled
+      - Damaged & Weevilled
+      - Damaged&Weevilled
+      - DamagedAndWeevilled
+      - damaged&weevilled
+
+    immature:
+      - immature
+      - Immature
+      - immature seed
+      - immature_seed
+
+    otherfoodgrains:
+      - other food grains
+      - other food grain
+      - otherfoodgrains
+      - otherfoodgrain
+      - other
+      - Other edible grains
+      - Other edible grain
+      - other edible grains
+      - other edible grain
+      - other_edible_grains
+      - other
+      - Others
+      - Other
+      - others
+
+    smallatrophiedseeds:
+      - small atrophied seeds
+      - small atrophied seed
+      - smallatrophiedseeds
+      - smallatrophiedseed
+
+    splitcracked:
+      - Splitcracked
+      - splitcracked
+      - SplitCracked
+      - splitCracked
+      - Split or Cracked seeds
+      - split or cracked seeds
+      - Split or cracked seeds
+      - split or Cracked seeds
+
+    blacktip:
+      - Black_Tip
+      - Black Tip
+      - black tip
+      - Black tip
+      - black Tip
+      - black_tip
+
+    broken:
+      - Broken
+      - broken
+      - broken1
+      - Broken1
+
+    broken2:
+      - Broken2
+      - broken2
+
+    clean:
+      - clean
+      - Clean
+
+    graincount:
+      - grain_count
+      - grain count
+      - Grain_count
+      - Grain count
+      - Count
+      - count
+      - graincount
+
+    aspectratio:
+      - aspect_ratio
+      - aspect ratio
+      - Aspect ratio
+      - Aspect_ratio
+      - aspectratio
+
+    length:
+      - length
+      - Length
+
+    width:
+      - width
+      - Width
+
+    karnalbunt:
+      - Karnal_Bunt
+      - karnal_bunt
+      - Karnal Bunt
+      - karnal bunt
+      - Karnal bunt
+      - karnal_bunt
+      - karnalbunt
+
+    redwheat:
+      - Red_Wheat
+      - Red Wheat
+      - Red wheat
+      - red wheat
+      - Red_wheat
+      - redwheat
+
+    fungus:
+      - fungus
+      - Fungus  -
+
+    fungusdamaged:
+      - fungus_damaged
+      - fungusdamaged
+      - Fungus_damaged
+      - Fungus_Damaged
+      - FungusDamaged
+      - fungus damaged
+      - Fungus Damaged
+      - Fungus damaged
+      - fungusdamaged
+
+    whitefungus:
+      - white_fungus
+      - White_Fungus
+      - whitefungus
+      - WhiteFungus
+      - White_fungus
+
+    temperature:
+      - temperature
+
+    moistureweight:
+      - moisture-weight
+      - weight
+      - moistureweight
+      - moisture_weight
+      - Moisture_Weight
+
+    black:
+      - black
+      - Black
+
+    red:
+      - red
+      - Red
+      - Red Grains
+      - red Grains
+      - red grains
+      - Red grains
+
+    shrivelled:
+      - shrivelled
+      - Shrivelled
+      - Shriveled Seed
+      - Shriveled_Seed
+      - shriveled_seed
+
+    tcw:
+      - tcw
+
+    radius:
+      - radius
+      - Radius
+
+    green:
+      - green
+      - Green
+      - green seed
+      - green_seed
+
+    discolored:
+      - discolored
+      - Discolored
+      - discolored seed
+      - discolored_seed
+      - Discolored Seed
+      - Discoloured Grains
+
+    starch:
+      - starch
+
+    flakes:
+      - flakes
+      - Flakes
+
+    husk:
+      - husk
+      - Husk
+      - dehusked Grains
+      - DE husked Grains
+      - de husked grains
+      - dehusked
+
+    waterdamaged:
+      - waterdamaged
+      - Water Damaged
+      - waterDamaged
+      - WaterDamaged
+      - water damaged
+
+    insectdamagedmatter:
+      - insectdamagedmatter
+      - insect_damaged_matter
+      - Insect Damaged Matter
+      - insect damaged matter
+
+    Shrunken:
+      - Shrunken
+      - shrunken
+
+    splitandthripscapsules:
+      - splitandthripscapsules
+      - split_and_thrips_capsules
+      - split and thrips capsules
+
+    sproutedweevilled:
+      - sprouted weevilled
+      - Sprouted Weevilled
+      - sprouted_weevilled
+      - sproutedweevilled
+
+    liveinfestation:
+      - Live Infestation
+      - live infestation
+      - live_infestation
+      - liveinfestation
+      - live insects
+      - insects
+      - Live Insects
+      - Live insects
+
+    molds:
+      - molds
+      - Molds
+      - Mold
+      - mold
+
+    whitishseeds:
+      - Whitish Seeds
+      - whitish seeds
+      - whitish_seeds
+      - whitishseeds
+
+    chalkygrain:
+      - Chalky Grain
+      - Chalky Grains
+      - Chalky_Grains
+      - chalky grain
+      - chalky_grain
+      - Chalky
+      - chalky
+      - Chalky_Grain
+
+    emptyshell:
+      - Empty shell
+      - empty shell
+      - Empty Shell
+      - empty_shell
+
+    hullingrecovery:
+      - Hulling recovery
+      - hulling recovery
+      - hulling_recovery
+      - Hulling_Recovery
+      - Hulling_recovery
+
+    undehuskedsplits:
+      - Undehusked Splits
+      - undehusked_splits
+      - Undehusked_Splits
+      - Undehusked
+      - undehusked
+      - Undehusked_splits
+
+    stone:
+      - stone
+      - stones
+      - Stone
+      - Stones
+
+---
+spring:
+  datasource:
+    jdbcUrl: jdbc:mysql://localhost:3306/multiple_customer_dev_local
+    username: root
+    password: akshay
+  second-datasource:
+    jdbcUrl: jdbc:mysql://localhost:3306/multiple_customer_dev_local2
+    username: root
+    password: akshay
+  config:
+    activate:
+      on-profile: local
+
+---
+spring:
+  datasource:
+    url:
+    username:
+    password:
+  config:
+    activate:
+      on-profile: dev
+
+---
+spring:
+  datasource:
+    url:
+    username:
+    password:
+  config:
+    activate:
+      on-profile: qa
+
+---
+spring:
+  datasource:
+    url:
+    username:
+    password:
+  config:
+    activate:
+      on-profile: prod
+
