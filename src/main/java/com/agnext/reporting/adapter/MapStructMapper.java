@@ -2,6 +2,7 @@ package com.agnext.reporting.adapter;
 
 import com.agnext.reporting.entity.scan.ScanEntity;
 import com.agnext.reporting.entity.report.ScanReportEntity;
+import com.agnext.reporting.model.MCSModel;
 import com.agnext.reporting.model.ScanReportModel;
 import com.agnext.reporting.model.kcs.KCSRagiModel;
 import org.mapstruct.Mapper;
@@ -33,4 +34,24 @@ public interface MapStructMapper {
     KCSRagiModel from(ScanReportModel scanReportModel);
 
     ScanReportModel ScanReportEntityToScanReportModel(ScanReportEntity scanReport);
+
+    @Mapping(source = "createdOnDate", target = "sampleDate")
+    @Mapping(source = "location", target = "procurementCenter")
+    @Mapping(source = "surveyorName", target = "surveyorName")
+    @Mapping(source = "commodityName", target = "commodity")
+    @Mapping(source = "farmerName", target = "farmerName")
+    @Mapping(source = "sampleId", target = "sampleNo")
+    @Mapping(source = "quantityUnit", target = "quantityUnit")
+    @Mapping(source = "bag", target = "totalBags")
+    @Mapping(source = "acceptedBags", target = "acceptedBags")
+    @Mapping(source = "rejectedBags", target = "rejectedBags")
+    @Mapping(source = "weight", target = "totalQuantity")
+    @Mapping(source = "moistureManual", target = "moistureContent")
+    @Mapping(source = "foreignMatterManual", target = "foreignMatter")
+    @Mapping(source = "damagedManual", target = "damaged")
+    @Mapping(source = "immatureManual", target = "immature")
+    @Mapping(source = "admixtureManual", target = "admixture")
+    @Mapping(source = "amount", target = "amount")
+    @Mapping(source = "remark", target = "remark")
+    MCSModel ScanReportModelToMCSModel(ScanReportModel scanReportModel);
 }

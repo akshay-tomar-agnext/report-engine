@@ -27,7 +27,7 @@ public class ReportController {
             @RequestParam(value = "days", required = false) Long days, @RequestParam(value = "customer_id") Long customerId)
             throws IOException, NoSuchFieldException, IllegalAccessException, MessagingException, ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException {
         
-        reportGeneratorService.generateReport(startDate, endDate, days, customerId);
+//        reportGeneratorService.generateReport(startDate, endDate, days, customerId);
     }
 
 }

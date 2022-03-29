@@ -16,6 +16,18 @@ spring:
     properties.mail.smtp.starttls.enable: true
 
 
+  quartz:
+    auto-startup: false
+    job-store-type: jdbc
+    properties:
+      org.quartz.threadPool.threadCount: 25
+
+email:
+  from: support@agnext.in
+  subject: Scan reports
+  content: Please find the attachments for posted scans.
+
+
 server:
   servlet.context-path: /
   port: 7006
@@ -408,6 +420,26 @@ analyticsconfig:
       - stones
       - Stone
       - Stones
+
+
+details:
+  customers:
+   MCS:
+      customerId: 212
+      frequency: daily
+      cronExpression: 0 0/1 * * * ?
+      emails:
+        - at818845@gmail.com
+        - mukul.gera@agnext.in
+   KCS:
+     customerId: 220
+     frequency: daily
+     cronExpression: 0 0/1 * * * ?
+     emails:
+       - akshaytomar502@gmail.com
+       - pratik@agnext.in
+
+
 
 ---
 spring:

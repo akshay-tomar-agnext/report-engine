@@ -1,7 +1,8 @@
 package com.agnext.reporting.enums;
 
 public enum Customer {
-    KCS(220L);
+    KCS(220L),
+    MCS(212L);
 
     private final Long code;
 

@@ -4,6 +4,7 @@ import com.agnext.reporting.adapter.MapStructMapper;
 import com.agnext.reporting.entity.report.ScanReportEntity;
 import com.agnext.reporting.enums.Commodity;
 import com.agnext.reporting.enums.Customer;
+import com.agnext.reporting.model.MCSModel;
 import com.agnext.reporting.model.ScanReportModel;
 import com.agnext.reporting.model.kcs.KCSJowrModel;
 import com.agnext.reporting.model.kcs.KCSPaddyModel;
@@ -19,6 +20,7 @@ import javax.mail.MessagingException;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +38,7 @@ public class ReportGeneratorServiceImpl implements ReportGeneratorService {
     private final MapStructMapper mapStructMapper = Mappers.getMapper(MapStructMapper.class);
 
     @Override
-    public void generateReport(LocalDate startDate, LocalDate endDate, Long days, Long customerId)
+    public void generateReport(LocalDateTime startDate, LocalDateTime endDate, Long days, Long customerId, String[] emails)
             throws IOException, NoSuchFieldException, IllegalAccessException, MessagingException {
         if (startDate == null) {
             if (days == null)
@@ -45,19 +47,36 @@ public class ReportGeneratorServiceImpl implements ReportGeneratorService {
                 startDate = endDate.minusDays(days);
         }
         List<ScanReportEntity> reportEntities = reportRepository
-                .findByCustomerIdAndCreatedOnBetween(Long.toString(customerId), Long.toString(toEpochMillis(startDate)), Long.toString(toEpochMillis(endDate)));
+                .findByCustomerIdAndCreatedOnBetween(Long.toString(customerId), Long.toString(toEpochMillis(LocalDate.from(startDate))), Long.toString(toEpochMillis(LocalDate.from(endDate))));
 
         List<ScanReportModel> reportModels = reportEntities
                 .stream()
                 .map(mapStructMapper::ScanReportEntityToScanReportModel)
                 .collect(Collectors.toList());
 
-        ByteArrayInputStream inputStream = null;
         if (customerId.equals(Customer.KCS.getCode())) {
-            inputStream = KCSReport(reportModels);
+            ByteArrayInputStream inputStream = KCSReport(reportModels);
+            senderService.sendEmail(emails, inputStream);
+        } else if (customerId.equals(Customer.MCS.getCode())) {
+            ByteArrayInputStream inputStream = MCSReport(reportModels);
+            senderService.sendEmail(emails,inputStream);
         }
 
-        senderService.sendEmail("akshaytomar502@gmail.com", "Hi Akshay", "Scan Report", inputStream);
+    }
+
+    private ByteArrayInputStream MCSReport(List<ScanReportModel> reportModels) throws IOException, NoSuchFieldException, IllegalAccessException {
+        List<MCSModel> mcsModelList = new ArrayList<>();
+        for (ScanReportModel scanReport : reportModels) {
+            MCSModel mcsModel = mapStructMapper.ScanReportModelToMCSModel(scanReport);
+            mcsModelList.add(mcsModel);
+        }
+        ByteArrayInputStream inputStream;
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        if (mcsModelList.isEmpty())
+            mcsModelList.add(new MCSModel());
+        inputStream = excelService.generateExcelSheet(workbook, Commodity.RAGI.getName(), mcsModelList);
+        workbook.close();
+        return inputStream;
     }
 
     private long toEpochMillis(LocalDate date) {
