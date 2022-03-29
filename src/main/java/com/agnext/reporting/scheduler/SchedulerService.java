@@ -2,6 +2,7 @@ package com.agnext.reporting.scheduler;
 
 import com.agnext.reporting.model.CredentialModel;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import javax.annotation.PreDestroy;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class SchedulerService {
 
     private final Scheduler quartzScheduler;
@@ -33,7 +35,6 @@ public class SchedulerService {
     }
 
     public void schedule(String customerName, CredentialModel credentialModel) {
-
         String jobGroup = "JG1";
         JobDataMap map = new JobDataMap();
         map.put("Customer", customerName);
@@ -45,10 +46,9 @@ public class SchedulerService {
                 .withIdentity(customerName, jobGroup).usingJobData(map).build();
         Trigger trigger = TriggerBuilder.newTrigger().withIdentity(customerName, jobGroup)
                 .withSchedule(CronScheduleBuilder.cronSchedule(credentialModel.getCronExpression())).build();
-
         try {
             quartzScheduler.scheduleJob(jobDetail, trigger);
-            System.out.println("Job Schedule");
+            log.info("Jobs scheduled successfully");
         } catch (SchedulerException e) {
             e.printStackTrace();
         }

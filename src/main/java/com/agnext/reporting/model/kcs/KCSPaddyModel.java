@@ -19,6 +19,11 @@ public class KCSPaddyModel {
     public String rejectedBags;
     public String totalQuantity;
     public String moistureContent;
-    public String foreignMatter;
+    public String foreignMatterOrganic;
     public String foreignMatterInorganic;
+    public String DamagedDiscolouredSproutedAndWeevilledGrains;
+    public String ImmatureShrunkenAndShriveledGrains;
+    public String AdmixtureOfLowerClass;
+    public String amount;
+    public String remark;
 }

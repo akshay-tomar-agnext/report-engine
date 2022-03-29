@@ -35,9 +35,9 @@ public class ReportingEngineApplication implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
-        Map<String, CredentialModel> customers =  schedulingDetails.getCustomers();
+    public void run(String... args) {
+        Map<String, CredentialModel> customers = schedulingDetails.getCustomers();
         for (Map.Entry<String, CredentialModel> entry : customers.entrySet())
-            schedulerService.schedule(entry.getKey(),entry.getValue());
+            schedulerService.schedule(entry.getKey(), entry.getValue());
     }
 }

@@ -1,11 +1,10 @@
 package com.agnext.reporting.service.impl;
 
-import com.agnext.notification.lib.vo.EmailData;
+import com.agnext.reporting.model.EmailData;
 import com.agnext.reporting.model.NotificationData;
 import com.agnext.reporting.service.EmailSenderService;
-import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
@@ -17,6 +16,7 @@ import java.io.*;
 import java.time.LocalDate;
 
 @Service
+@Slf4j
 public class EmailSenderServiceImpl implements EmailSenderService {
 
     public static final String URL = "http://23.98.216.140:9456/notification/email";
@@ -32,6 +32,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 
     public void sendEmail(String[] toEmail, ByteArrayInputStream inputStream) {
 
+        log.info("Sending mails");
         NotificationData notificationData = new NotificationData();
         EmailData emailData = new EmailData();
         try {
@@ -51,7 +52,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 
             HttpEntity<LinkedMultiValueMap<String, Object>> requestEntity = new HttpEntity<>(map, headers);
             ResponseEntity<String> result = restTemplate.exchange(URL, HttpMethod.POST, requestEntity, String.class);
-            System.out.println("Email sent successfully");
+            log.info("Mail sent successfully");
         } catch (Exception e) {
             e.printStackTrace();
         }

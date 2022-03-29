@@ -1,8 +1,13 @@
 package com.agnext.reporting.enums;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 import java.util.Arrays;
 import java.util.Optional;
 
+@Getter
+@AllArgsConstructor
 public enum Analytics {
 
     MOISTURE1("moisturecontent", "MANUAL", "moistureManual"),
@@ -169,22 +174,10 @@ public enum Analytics {
     private final String scanType;
     private final String columnName;
 
-    Analytics(String analysisName, String scanType, String columnName) {
-        this.analysisName = analysisName;
-        this.scanType = scanType;
-        this.columnName = columnName;
-    }
-
     public static Optional<Analytics> getFieldByAnalysisName(String analysisName, String analysisType) {
         return Arrays.stream(Analytics.values())
                 .filter(analytics -> analytics.analysisName.equals(analysisName)
                         && analytics.scanType.equals(analysisType))
                 .findFirst();
     }
-
-    public String getColumnName() {
-        return columnName;
-    }
-
-
 }

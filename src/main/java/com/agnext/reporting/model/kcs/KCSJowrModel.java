@@ -20,4 +20,11 @@ public class KCSJowrModel {
     public String totalQuantity;
     public String moistureContent;
     public String foreignMatter;
+    public String damagedGrains;
+    public String slightlyDamaged;
+    public String otherFoodGrains;
+    public String ShriveledImmatureGrains;
+    public String WeevilledGrains;
+    public String amount;
+    public String remark;
 }

@@ -1,6 +1,5 @@
 package com.agnext.reporting.enums;
 
-import com.agnext.reporting.Constants;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
