@@ -20,18 +20,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Slf4j
 public class ExcelGenerationServiceImpl implements ExcelGenerationService {
 
-    private XSSFWorkbook workbook;
-    private XSSFSheet sheet;
-
     @Override
     public <T> ByteArrayInputStream generateExcelSheet(XSSFWorkbook workbook, String sheetName, List<T> reportsList)
             throws IOException, NoSuchFieldException, IllegalAccessException {
-        this.workbook = workbook;
-        this.sheet = workbook.createSheet(sheetName);
-        return export(reportsList);
+        XSSFSheet sheet = workbook.createSheet(sheetName);
+        return export(workbook, sheet, reportsList);
     }
 
-    private <T> void writerHeadersRow(List<T> reportsList) {
+    private <T> void writerHeadersRow(XSSFSheet sheet, List<T> reportsList) {
         Row row = sheet.createRow(0);
         Field[] fields = reportsList.get(0).getClass().getDeclaredFields();
         AtomicInteger columnCount = new AtomicInteger(0);
@@ -41,7 +37,7 @@ public class ExcelGenerationServiceImpl implements ExcelGenerationService {
         });
     }
 
-    private <T> void writeDataRows(List<T> reportsList) throws NoSuchFieldException, IllegalAccessException {
+    private <T> void writeDataRows(XSSFSheet sheet, List<T> reportsList) throws NoSuchFieldException, IllegalAccessException {
         AtomicInteger rowCount = new AtomicInteger(sheet.getLastRowNum());
         Field[] fields = reportsList.get(0).getClass().getDeclaredFields();
         for (T t : reportsList) {
@@ -69,10 +65,10 @@ public class ExcelGenerationServiceImpl implements ExcelGenerationService {
         return str.toString();
     }
 
-    private <T> ByteArrayInputStream export(List<T> reportsList) throws IOException, NoSuchFieldException,
-            IllegalAccessException {
-        writerHeadersRow(reportsList);
-        writeDataRows(reportsList);
+    private <T> ByteArrayInputStream export(XSSFWorkbook workbook, XSSFSheet sheet, List<T> reportsList) throws IOException,
+            NoSuchFieldException, IllegalAccessException {
+        writerHeadersRow(sheet, reportsList);
+        writeDataRows(sheet, reportsList);
         ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
         workbook.write(arrayOutputStream);
         return new ByteArrayInputStream(arrayOutputStream.toByteArray());

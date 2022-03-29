@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api")
 public class DataGenerationController {
 
     private final DataGenerationServiceImpl scanReportService;
@@ -15,8 +15,12 @@ public class DataGenerationController {
         this.scanReportService = scanReportService;
     }
 
-    @GetMapping("generate-report")
-    public void generateReport() throws NoSuchFieldException, IllegalAccessException {
-        scanReportService.dataMigration();
+    @GetMapping("/generate-report")
+    public void generateReport() {
+        try {
+            scanReportService.dataMigration();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

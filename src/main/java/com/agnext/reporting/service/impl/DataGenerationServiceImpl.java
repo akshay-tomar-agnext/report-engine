@@ -10,6 +10,7 @@ import com.agnext.reporting.repository.report.ScanReportRepository;
 import com.agnext.reporting.repository.scan.ScanRepository;
 import com.agnext.reporting.repository.scan.ScanResultRepository;
 import com.agnext.reporting.service.DataGenerationService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import java.util.*;
 
 
 @Service
+@AllArgsConstructor
 @Slf4j
 public class DataGenerationServiceImpl implements DataGenerationService {
 
@@ -26,13 +28,6 @@ public class DataGenerationServiceImpl implements DataGenerationService {
     private final ScanResultRepository scanResultRepository;
     private final ScanRepository scanRepository;
     private final MapStructMapper mapStructMapper = Mappers.getMapper(MapStructMapper.class);
-
-    public DataGenerationServiceImpl(AnalyticsDetail analyticsDetail, ScanReportRepository reportRepository, ScanResultRepository scanResultRepository, ScanRepository scanRepository) {
-        this.analyticsDetail = analyticsDetail;
-        this.reportRepository = reportRepository;
-        this.scanResultRepository = scanResultRepository;
-        this.scanRepository = scanRepository;
-    }
 
     @Override
     public void dataMigration() throws NoSuchFieldException, IllegalAccessException {

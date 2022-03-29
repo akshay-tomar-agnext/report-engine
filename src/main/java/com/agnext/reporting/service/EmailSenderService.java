@@ -5,5 +5,5 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 public interface EmailSenderService {
-    public void sendEmail(String toEmail, String body, String subject, ByteArrayInputStream inputStream) throws MessagingException, IOException;
+    void sendEmail(String[] toEmail, ByteArrayInputStream inputStream) throws MessagingException, IOException;
 }

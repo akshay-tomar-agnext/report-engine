@@ -30,7 +30,7 @@ public class ReportConfig {
 
     @Bean(name = "reportEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean reportEntityManagerFactory(EntityManagerFactoryBuilder builder,
-                                                                           @Qualifier("reportDataSource") DataSource dataSource) {
+                                                                             @Qualifier("reportDataSource") DataSource dataSource) {
         return builder
                 .dataSource(dataSource)
                 .packages("com.agnext.reporting.entity.report")

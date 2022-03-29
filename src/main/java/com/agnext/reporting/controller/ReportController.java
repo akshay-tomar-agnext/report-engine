@@ -25,9 +25,9 @@ public class ReportController {
             @RequestParam(value = "start_date",required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
             @RequestParam(value = "end_date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate,
             @RequestParam(value = "days", required = false) Long days, @RequestParam(value = "customer_id") Long customerId)
-            throws IOException, NoSuchFieldException, IllegalAccessException, MessagingException, ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException {
-        
-        reportGeneratorService.generateReport(startDate, endDate, days, customerId);
+            throws IOException, NoSuchFieldException, IllegalAccessException, MessagingException,
+            ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException {
+//        reportGeneratorService.generateReport(startDate, endDate, days, customerId);
     }
 
 }

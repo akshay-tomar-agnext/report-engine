@@ -1,4 +1,4 @@
-package com.agnext.reporting;
+package com.agnext.reporting.enums;
 
 public class Constants {
 
@@ -70,6 +70,7 @@ public class Constants {
     public static final String DEVICE_TYPE_MOISTURE_METER = "MOISTURE_METER";
     public static final String ANALYSIS_TYPE = "MOISTURE";
     public static final String MOISTURE_UOM_TYPE = "PERCENTAGE";
+    public static final String SCAN_REPORT = "Scan Report";
 
     private Constants() {
     }
