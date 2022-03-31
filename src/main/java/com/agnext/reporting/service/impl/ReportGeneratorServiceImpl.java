@@ -38,7 +38,7 @@ public class ReportGeneratorServiceImpl implements ReportGeneratorService {
     private final MapStructMapper mapStructMapper = Mappers.getMapper(MapStructMapper.class);
 
     @Override
-    public void generateReport(LocalDateTime startDate, LocalDateTime endDate, Long days, Long customerId, String[] emails)
+    public void generateReport(LocalDate startDate, LocalDate endDate, Long days, Long customerId, String[] emails)
             throws IOException, NoSuchFieldException, IllegalAccessException {
         if (startDate == null) {
             if (days == null)

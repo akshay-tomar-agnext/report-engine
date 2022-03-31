@@ -7,15 +7,6 @@ spring:
   datasource.driverClassName: com.mysql.cj.jdbc.Driver
   profiles.active: local
 
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: akshay.tomar@agnext.in
-    password: avxiyvcgfwfdugkv
-    properties.mail.smtp.auth: true
-    properties.mail.smtp.starttls.enable: true
-
-
   quartz:
     auto-startup: false
     job-store-type: jdbc
@@ -24,8 +15,8 @@ spring:
 
 email:
   from: support@agnext.in
-  subject: Scan reports
-  content: Please find the attachments for posted scans.
+  subject: Report
+  content: Below attached the report for posted scans.
 
 
 server:
@@ -429,15 +420,13 @@ details:
       frequency: daily
       cronExpression: 0 0/1 * * * ?
       emails:
-        - at818845@gmail.com
-        - mukul.gera@agnext.in
+        - abhishek1.kumar@agnext.in
    KCS:
      customerId: 220
      frequency: daily
      cronExpression: 0 0/1 * * * ?
      emails:
-       - akshaytomar502@gmail.com
-       - pratik@agnext.in
+       - akshay.tomar@agnext.in
 
 
 

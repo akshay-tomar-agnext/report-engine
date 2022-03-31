@@ -8,7 +8,7 @@ import org.quartz.JobExecutionContext;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Component
 @AllArgsConstructor
@@ -24,17 +24,17 @@ public class Job extends QuartzJobBean {
         Long customerId = jobDataMap.getLong("CustomerId");
         String[] email = (String[]) jobDataMap.get("Emails");
 
-        LocalDateTime dateTime = null;
+        LocalDate dateTime = null;
         if (frequency.equalsIgnoreCase(Frequency.DAILY.getTime())) {
-            dateTime = LocalDateTime.now().minusDays(1);
+            dateTime = LocalDate.now().minusDays(1);
         } else if (frequency.equalsIgnoreCase(Frequency.WEEKLY.getTime())) {
-            dateTime = LocalDateTime.now().minusWeeks(1);
+            dateTime = LocalDate.now().minusWeeks(1);
         } else if (frequency.equalsIgnoreCase(Frequency.MONTHLY.getTime())) {
-            dateTime = LocalDateTime.now().minusMonths(1);
+            dateTime = LocalDate.now().minusMonths(1);
         }
 
         try {
-            reportGeneratorService.generateReport(dateTime, LocalDateTime.now(), DAYS, customerId, email);
+            reportGeneratorService.generateReport(dateTime, LocalDate.now(), DAYS, customerId, email);
         } catch (Exception e) {
             e.printStackTrace();
         }
