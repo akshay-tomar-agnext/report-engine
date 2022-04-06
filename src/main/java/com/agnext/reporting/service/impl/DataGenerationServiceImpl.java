@@ -31,7 +31,7 @@ public class DataGenerationServiceImpl implements DataGenerationService {
     private final MapStructMapper mapStructMapper = Mappers.getMapper(MapStructMapper.class);
 
     @Override
-    @Scheduled(cron = "0 0/5 * * * ?")
+    @Scheduled(fixedDelay = 10800000)
     public void dataMigration() throws NoSuchFieldException, IllegalAccessException {
         log.info("Merging scan and scan results");
         Map<String, String> map = analyticsDetail.getAnalysisNameFromVariations();

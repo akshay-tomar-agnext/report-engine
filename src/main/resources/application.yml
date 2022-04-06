@@ -418,7 +418,7 @@ details:
    KCS:
      customerId: 213
      frequency: daily
-     cronExpression: 0 10 * * * ?
+     cronExpression: 0 * 10 * * ?
      emails:
        - akshay.tomar@agnext.in
 
