@@ -11,5 +11,7 @@ public interface ScanReportRepository extends JpaRepository<ScanReportEntity, Lo
 
     ScanReportEntity findTopByOrderByScanIdDesc();
 
-    List<ScanReportEntity> findByCustomerIdAndCreatedOnBetween(String customerId, String startDate, String endDate);
+    List<ScanReportEntity> findByCustomerIdAndCreatedOnBetweenOrderByCreatedOn(String customerId, String startDate, String endDate);
+
+
 }

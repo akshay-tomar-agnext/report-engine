@@ -73,7 +73,7 @@ public interface MapStructMapper {
     @Mapping(source = "moistureManual", target = "moistureContent")
     @Mapping(source = "foreignMatterManual", target = "foreignMatter")
     @Mapping(source = "damagedManual", target = "damagedGrains")
-    @Mapping(source = "slightlyDamagedManual", target = "slightlyDamaged")
+    @Mapping(source = "slightlyDamagedManual", target = "slightlyDamagedDiscoloured")
     @Mapping(source = "otherFoodGrainsManual", target = "otherFoodGrains")
     @Mapping(source = "weevilledManual", target = "WeevilledGrains")
     @Mapping(source = "immatureManual", target = "ShriveledImmatureGrains")

@@ -1,7 +1,9 @@
 package com.agnext.reporting.service.impl;
 
+import com.agnext.reporting.enums.ReportFormat;
 import com.agnext.reporting.service.ExcelGenerationService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -33,7 +35,7 @@ public class ExcelGenerationServiceImpl implements ExcelGenerationService {
         AtomicInteger columnCount = new AtomicInteger(0);
         Arrays.stream(fields).forEach(field -> {
             Cell cell = row.createCell(columnCount.getAndIncrement());
-            cell.setCellValue(capitalize(field.getName()));
+            cell.setCellValue(ReportFormat.getFieldByAnalysisName(field.getName()));
         });
     }
 
@@ -44,9 +46,10 @@ public class ExcelGenerationServiceImpl implements ExcelGenerationService {
             Row row = sheet.createRow(rowCount.incrementAndGet());
             AtomicInteger columnCount = new AtomicInteger(0);
             for (Field field : fields) {
-                Field theField = t.getClass().getDeclaredField(field.getName());
                 Cell cell = row.createCell(columnCount.getAndIncrement());
-                cell.setCellValue(String.valueOf(theField.get(t)));
+                String data = (String) field.get(t);
+                if (!StringUtils.isEmpty(data))
+                    cell.setCellValue(data);
             }
         }
     }

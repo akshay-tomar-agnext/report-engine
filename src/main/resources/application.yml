@@ -1,11 +1,11 @@
 spring:
   jpa:
     show-sql: true
-    hibernate.ddl-auto: update
+    hibernate.ddl-auto: none
     database-platform: org.hibernate.dialect.MySQL5Dialect
 
   datasource.driverClassName: com.mysql.cj.jdbc.Driver
-  profiles.active: local
+  profiles.active: dev
 
   quartz:
     auto-startup: false
@@ -415,16 +415,10 @@ analyticsconfig:
 
 details:
   customers:
-   MCS:
-      customerId: 212
-      frequency: daily
-      cronExpression: 0 0/1 * * * ?
-      emails:
-        - abhishek1.kumar@agnext.in
    KCS:
-     customerId: 220
+     customerId: 213
      frequency: daily
-     cronExpression: 0 0/1 * * * ?
+     cronExpression: 0 10 * * * ?
      emails:
        - akshay.tomar@agnext.in
 
@@ -433,11 +427,11 @@ details:
 ---
 spring:
   datasource:
-    jdbcUrl: jdbc:mysql://localhost:3306/multiple_customer_dev_local
+    jdbcurl: jdbc:mysql://localhost:3306/assaying_prod
     username: root
     password: akshay
   second-datasource:
-    jdbcUrl: jdbc:mysql://localhost:3306/multiple_customer_dev_local2
+    jdbcUrl: jdbc:mysql://localhost:3306/reporting_dev
     username: root
     password: akshay
   config:
@@ -445,15 +439,19 @@ spring:
       on-profile: local
 
 ---
+
 spring:
   datasource:
-    url:
-    username:
-    password:
+    jdbcUrl: jdbc:mysql://mysql-server-in.mysql.database.azure.com:3306/assaying_prod?serverTimezone=UTC&autoReconnect=true
+    username: reporting_dev@mysql-server-in
+    password: n5bmTEF+LJjC5bsdpcme
+  second-datasource:
+    jdbcUrl: jdbc:mysql://mysql-server-in.mysql.database.azure.com:3306/reporting_dev?serverTimezone=UTC&autoReconnect=true
+    username: reporting_dev@mysql-server-in
+    password: n5bmTEF+LJjC5bsdpcme
   config:
     activate:
       on-profile: dev
-
 ---
 spring:
   datasource:

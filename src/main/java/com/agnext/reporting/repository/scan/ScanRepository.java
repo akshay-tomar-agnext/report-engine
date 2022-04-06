@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface ScanRepository extends JpaRepository<ScanEntity, Long> {
 
-    List<ScanEntity> findByIdBetween(Long id1, Long id2);
+    List<ScanEntity> findByIdGreaterThan(Long id);
 
     ScanEntity findTopByOrderByIdAsc();
 }

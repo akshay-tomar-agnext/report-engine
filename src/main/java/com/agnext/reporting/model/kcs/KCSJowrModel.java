@@ -21,7 +21,7 @@ public class KCSJowrModel {
     public String moistureContent;
     public String foreignMatter;
     public String damagedGrains;
-    public String slightlyDamaged;
+    public String slightlyDamagedDiscoloured;
     public String otherFoodGrains;
     public String ShriveledImmatureGrains;
     public String WeevilledGrains;

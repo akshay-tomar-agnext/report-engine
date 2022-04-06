@@ -47,7 +47,7 @@ public class ReportGeneratorServiceImpl implements ReportGeneratorService {
                 startDate = endDate.minusDays(days);
         }
         List<ScanReportEntity> reportEntities = reportRepository
-                .findByCustomerIdAndCreatedOnBetween(Long.toString(customerId),
+                .findByCustomerIdAndCreatedOnBetweenOrderByCreatedOn(Long.toString(customerId),
                         Long.toString(toEpochMillis(LocalDate.from(startDate))),
                         Long.toString(toEpochMillis(LocalDate.from(endDate))));
 
@@ -59,10 +59,11 @@ public class ReportGeneratorServiceImpl implements ReportGeneratorService {
         ByteArrayInputStream inputStream = null;
         if (customerId.equals(Customer.KCS.getCode())) {
             inputStream = KCSReport(reportModels);
+            senderService.sendEmail(emails, inputStream);
         } else if (customerId.equals(Customer.MCS.getCode())) {
             inputStream = MCSReport(reportModels);
+            senderService.sendEmail(emails, inputStream);
         }
-        senderService.sendEmail(emails, inputStream);
     }
 
 
@@ -96,7 +97,7 @@ public class ReportGeneratorServiceImpl implements ReportGeneratorService {
                 kcsRagiModelList.add(mapStructMapper.ScanReportModelToKCSRagiModel(scanReport));
             } else if (scanReport.getCommodityName().equalsIgnoreCase(Commodity.PADDY.getName())) {
                 kcsPaddyModelList.add((mapStructMapper.ScanReportModelToKCSPaddyModel(scanReport)));
-            } else if (scanReport.getCommodityName().equalsIgnoreCase(Commodity.JOWR.getName())) {
+            } else if (scanReport.getCommodityName().equalsIgnoreCase(Commodity.JOWAR.getName())) {
                 kcsJowrModelList.add(mapStructMapper.ScanReportModelToKCSJowrModel(scanReport));
             }
         });
@@ -110,7 +111,7 @@ public class ReportGeneratorServiceImpl implements ReportGeneratorService {
         excelService.generateExcelSheet(workbook, Commodity.PADDY.getName(), kcsPaddyModelList);
         if (kcsJowrModelList.isEmpty())
             kcsJowrModelList.add(new KCSJowrModel());
-        inputStream = excelService.generateExcelSheet(workbook, Commodity.JOWR.getName(), kcsJowrModelList);
+        inputStream = excelService.generateExcelSheet(workbook, Commodity.JOWAR.getName(), kcsJowrModelList);
         workbook.close();
         return inputStream;
     }

@@ -13,6 +13,7 @@ import com.agnext.reporting.service.DataGenerationService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.mapstruct.factory.Mappers;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -30,8 +31,9 @@ public class DataGenerationServiceImpl implements DataGenerationService {
     private final MapStructMapper mapStructMapper = Mappers.getMapper(MapStructMapper.class);
 
     @Override
+    @Scheduled(cron = "0 0/5 * * * ?")
     public void dataMigration() throws NoSuchFieldException, IllegalAccessException {
-        log.info("Generating report scan");
+        log.info("Merging scan and scan results");
         Map<String, String> map = analyticsDetail.getAnalysisNameFromVariations();
         ScanReportEntity scanReportEntity = reportRepository.findTopByOrderByScanIdDesc();
         List<ScanEntity> scanList;
@@ -39,9 +41,8 @@ public class DataGenerationServiceImpl implements DataGenerationService {
             ScanEntity scanEntity = scanRepository.findTopByOrderByIdAsc();
             scanList = List.of(scanEntity);
         } else {
-            scanList = scanRepository.findByIdBetween(312L, 340L);
+            scanList = scanRepository.findByIdGreaterThan(scanReportEntity.getScanId());
         }
-        List<ScanReportEntity> scanReportEntityList = new ArrayList<>();
         for (ScanEntity scanEntity : scanList) {
             ScanReportEntity scanReport = mapStructMapper.ScanEntityToScanReportEntity(scanEntity);
             scanReport.setScanId(scanEntity.getId());
@@ -56,9 +57,9 @@ public class DataGenerationServiceImpl implements DataGenerationService {
                         scanReport.setField(columnName.get().getColumnName(), Double.valueOf(scanResult.getResult()));
                 }
             }
-            scanReportEntityList.add(scanReport);
+            log.info("Scan merge is : {}", scanEntity.getId());
+            reportRepository.save(scanReport);
         }
-        reportRepository.saveAll(scanReportEntityList);
-        log.info("Report scan generated");
+        log.info("Scans merged successfully");
     }
 }

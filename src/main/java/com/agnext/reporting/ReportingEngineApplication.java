@@ -9,12 +9,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 
 import java.util.HashMap;
 import java.util.Map;
 
 @SpringBootApplication
+@EnableScheduling
 public class ReportingEngineApplication implements CommandLineRunner {
 
     private final SchedulerService schedulerService;

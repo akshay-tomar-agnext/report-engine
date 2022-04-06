@@ -15,18 +15,21 @@ import java.time.LocalDate;
 public class Job extends QuartzJobBean {
 
     public static final long DAYS = 0L;
+    public static final String FREQUENCY = "Frequency";
+    public static final String CUSTOMER_ID = "CustomerId";
+    public static final String EMAILS = "Emails";
     private final ReportGeneratorServiceImpl reportGeneratorService;
 
     @Override
     protected void executeInternal(JobExecutionContext context) {
         JobDataMap jobDataMap = context.getMergedJobDataMap();
-        String frequency = jobDataMap.getString("Frequency");
-        Long customerId = jobDataMap.getLong("CustomerId");
-        String[] email = (String[]) jobDataMap.get("Emails");
+        String frequency = jobDataMap.getString(FREQUENCY);
+        Long customerId = jobDataMap.getLong(CUSTOMER_ID);
+        String[] email = (String[]) jobDataMap.get(EMAILS);
 
         LocalDate dateTime = null;
         if (frequency.equalsIgnoreCase(Frequency.DAILY.getTime())) {
-            dateTime = LocalDate.now().minusDays(1);
+            dateTime = LocalDate.now().minusMonths(4);
         } else if (frequency.equalsIgnoreCase(Frequency.WEEKLY.getTime())) {
             dateTime = LocalDate.now().minusWeeks(1);
         } else if (frequency.equalsIgnoreCase(Frequency.MONTHLY.getTime())) {

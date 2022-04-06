@@ -6,8 +6,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum Customer {
-    KCS(220L),
-    MCS(212L);
+    KCS(213L),
+    MCS(000L);
 
     private final Long code;
 }
