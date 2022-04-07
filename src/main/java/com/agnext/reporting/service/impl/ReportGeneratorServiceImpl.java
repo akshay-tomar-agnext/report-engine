@@ -47,7 +47,7 @@ public class ReportGeneratorServiceImpl implements ReportGeneratorService {
                 startDate = endDate.minusDays(days);
         }
         List<ScanReportEntity> reportEntities = reportRepository
-                .findByCustomerIdAndCreatedOnBetweenOrderByCreatedOn(Long.toString(customerId),
+                .findByCustomerIdAndCreatedOnBetweenAndIsValidOrderByCreatedOn(Long.toString(customerId),
                         Long.toString(toEpochMillis(LocalDate.from(startDate))),
                         Long.toString(toEpochMillis(LocalDate.from(endDate))));
 
