@@ -421,9 +421,13 @@ details:
      frequency: daily
      cronExpression: 0 0 5 * * ?
      emails:
-       - akshay.tomar@agnext.in
-       - ramkrishna@agnext.in
+       - karnataka.supervisor1@agnext.in
+       - anand.botla@agnext.in
        - jasdeep.kaur@agnext.in
+       - shashank.dubey@agnext.in
+       - karnataka.supervisor@agnext.in
+       - alok.singh@agnext.in
+       - pratik.datta@agnext.in
 
 
 
