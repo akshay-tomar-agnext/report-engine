@@ -15,8 +15,8 @@ spring:
 
 email:
   from: support@agnext.in
-  subject: Report
-  content: Below attached the report for posted scans.
+  subject: KCS Daily Report
+  content: Below attached the report for the scans posted before
 
 
 server:

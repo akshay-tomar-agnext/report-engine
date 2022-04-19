@@ -1,5 +1,6 @@
 package com.agnext.reporting.service.impl;
 
+import com.agnext.reporting.enums.Constants;
 import com.agnext.reporting.model.EmailData;
 import com.agnext.reporting.model.NotificationData;
 import com.agnext.reporting.service.EmailSenderService;
@@ -14,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.time.ZoneId;
 
 @Service
 @Slf4j
@@ -40,7 +42,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
             LinkedMultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
             map.add("files", new FileSystemResource(convertInputStreamToFile(inputStream)));
             emailData.setEmailToRecipient(toEmail);
-            emailData.setEmailContent(content);
+            emailData.setEmailContent(content + " " + LocalDate.now(ZoneId.of(Constants.DEFAULT_ZONE)) + ".");
             emailData.setEmailSender(from);
             emailData.setEmailSubject(subject);
 
