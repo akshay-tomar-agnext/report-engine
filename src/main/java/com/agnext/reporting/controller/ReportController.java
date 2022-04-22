@@ -12,6 +12,7 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 @RestController
 @RequestMapping(value = "/api", produces = "application/json")
@@ -21,13 +22,10 @@ public class ReportController {
     private final ReportGeneratorServiceImpl reportGeneratorService;
 
     @GetMapping("/report")
-    public void sendExcelReportBetweenDates(
-            @RequestParam(value = "start_date",required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
-            @RequestParam(value = "end_date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate,
-            @RequestParam(value = "days", required = false) Long days, @RequestParam(value = "customer_id") Long customerId)
+    public void sendExcelReportBetweenDates()
             throws IOException, NoSuchFieldException, IllegalAccessException, MessagingException,
             ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException {
-//        reportGeneratorService.generateReport(startDate, endDate, days, customerId);
+        reportGeneratorService.generateReport(LocalDate.now().minusMonths(4), LocalDate.now(), 0L, 212L, new String[]{"akshay.tomar@agnext.in"});
     }
 
 }

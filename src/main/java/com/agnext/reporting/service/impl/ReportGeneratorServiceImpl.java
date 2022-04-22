@@ -1,7 +1,7 @@
 package com.agnext.reporting.service.impl;
 
-import com.agnext.reporting.enums.Constants;
 import com.agnext.reporting.adapter.MapStructMapper;
+import com.agnext.reporting.enums.Constants;
 import com.agnext.reporting.entity.report.ScanReportEntity;
 import com.agnext.reporting.enums.Commodity;
 import com.agnext.reporting.enums.Customer;
@@ -20,7 +20,6 @@ import org.springframework.stereotype.Service;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,12 +46,14 @@ public class ReportGeneratorServiceImpl implements ReportGeneratorService {
                 startDate = endDate.minusDays(days);
         }
         List<ScanReportEntity> reportEntities = reportRepository
-                .findByCustomerIdAndCreatedOnBetweenAndIsValidOrderByCreatedOn(Long.toString(customerId),
-                        Long.toString(toEpochMillis(LocalDate.from(startDate))),
-                        Long.toString(toEpochMillis(LocalDate.from(endDate))));
+                .findByCustomerId(Long.toString(customerId));
 
+        LocalDate finalStartDate = startDate;
         List<ScanReportModel> reportModels = reportEntities
                 .stream()
+                .filter(scanReportEntity -> Long.parseLong(scanReportEntity.getCreatedOn()) >= toEpochMillis(LocalDate.from(finalStartDate)) &&
+                        Long.parseLong(scanReportEntity.getCreatedOn()) <= toEpochMillis(LocalDate.from(endDate)) &&
+                        scanReportEntity.getIsValid())
                 .map(mapStructMapper::ScanReportEntityToScanReportModel)
                 .collect(Collectors.toList());
 

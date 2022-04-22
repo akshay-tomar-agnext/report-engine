@@ -5,11 +5,11 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5Dialect
 
   datasource.driverClassName: com.mysql.cj.jdbc.Driver
-  profiles.active: dev
+  profiles.active: local
 
   quartz:
     auto-startup: false
-    job-store-type: jdbc
+    job-store-type: memory
     properties:
       org.quartz.threadPool.threadCount: 25
 
@@ -421,29 +421,48 @@ details:
      frequency: daily
      cronExpression: 0 0 5 * * ?
      emails:
-       - karnataka.supervisor1@agnext.in
-       - anand.botla@agnext.in
-       - jasdeep.kaur@agnext.in
-       - shashank.dubey@agnext.in
-       - karnataka.supervisor@agnext.in
-       - alok.singh@agnext.in
-       - pratik.datta@agnext.in
+       - akshay.tomar@agnext.in
+#       - karnataka.supervisor1@agnext.in
+#       - anand.botla@agnext.in
+#       - jasdeep.kaur@agnext.in
+#       - shashank.dubey@agnext.in
+#       - karnataka.supervisor@agnext.in
+#       - alok.singh@agnext.in
+#       - pratik.datta@agnext.in
 
 
 
 ---
 spring:
   datasource:
-    jdbcurl: jdbc:mysql://localhost:3306/assaying_prod
-    username: root
-    password: akshay
-  second-datasource:
-    jdbcUrl: jdbc:mysql://localhost:3306/reporting_dev
-    username: root
-    password: akshay
+    url: jdbc:mysql://mysql-server-in.mysql.database.azure.com:3306/assaying_prod?serverTimezone=UTC&autoReconnect=true
+    username: reporting_dev@mysql-server-in
+    password: n5bmTEF+LJjC5bsdpcme
+  data:
+    cassandra:
+      contact-points: localhost
+      port: 9042
+      keyspace-name: reporting_dev_test
+      local-datacenter: datacenter1
+      schema-action: create_if_not_exists
+      username: cassandra
+      password: cassandra
+      request:
+        timeout: 10s
+      connection:
+        connect-timeout: 10s
+        init-query-timeout: 10s
   config:
     activate:
       on-profile: local
+
+logging:
+  level:
+    org.springframework: ERROR
+    com.agnext: DEBUG
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%C){cyan} %clr(:){faint} %m%n%wex"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
 
 ---
 

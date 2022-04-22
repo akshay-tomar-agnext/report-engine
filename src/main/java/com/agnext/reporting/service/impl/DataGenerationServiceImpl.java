@@ -31,22 +31,28 @@ public class DataGenerationServiceImpl implements DataGenerationService {
     private final MapStructMapper mapStructMapper = Mappers.getMapper(MapStructMapper.class);
 
     @Override
-    @Scheduled(fixedDelay = 10800000)
+    @Scheduled(fixedDelay = 43200000)
     public void dataMigration() throws NoSuchFieldException, IllegalAccessException {
         log.info("Merging scan and scan results");
         Map<String, String> map = analyticsDetail.getAnalysisNameFromVariations();
-        ScanReportEntity scanReportEntity = reportRepository.findTopByOrderByScanIdDesc();
-        List<ScanEntity> scanList;
-        if (scanReportEntity == null) {
-            ScanEntity scanEntity = scanRepository.findTopByOrderByIdAsc();
-            scanList = List.of(scanEntity);
-        } else {
-            scanList = scanRepository.findByIdGreaterThan(scanReportEntity.getScanId());
+        String[] customer = {"215"};
+        for (String s : customer) {
+            ScanReportEntity scanReportEntity = null;
+            List<ScanEntity> scanList;
+            if (scanReportEntity != null) {
+                ScanEntity scanEntity = scanRepository.findTopByCustomerIdAndIdOrderByIdAsc(Long.parseLong(s));
+                scanList = List.of(scanEntity);
+            } else {
+                scanList = scanRepository.findByCustomerIdAndIdGreaterThanAndIsValid(Long.parseLong(s),90768L,true);
+            }
+            saveData(map, scanList);
         }
+        log.info("Scans merged successfully");
+    }
+
+    private void saveData(Map<String, String> map, List<ScanEntity> scanList) throws NoSuchFieldException, IllegalAccessException {
         for (ScanEntity scanEntity : scanList) {
             ScanReportEntity scanReport = mapStructMapper.ScanEntityToScanReportEntity(scanEntity);
-            scanReport.setScanId(scanEntity.getId());
-            scanReport.setAssayingType(scanEntity.getAssayingTypeEnum());
             List<ScanResultEntity> scanResultList = scanResultRepository.findByScanEntityId(scanEntity.getId());
             for (ScanResultEntity scanResult : scanResultList) {
                 if (map.containsKey(scanResult.getAnalysisName())) {
@@ -60,6 +66,5 @@ public class DataGenerationServiceImpl implements DataGenerationService {
             log.info("Scan merge is : {}", scanEntity.getId());
             reportRepository.save(scanReport);
         }
-        log.info("Scans merged successfully");
     }
 }

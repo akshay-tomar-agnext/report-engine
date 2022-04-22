@@ -12,6 +12,8 @@ import org.mapstruct.Mapping;
 
 @Mapper
 public interface MapStructMapper {
+    @Mapping(source = "id",target = "scanId")
+    @Mapping(source = "assayingTypeEnum.scanType", target = "assayingType")
     ScanReportEntity ScanEntityToScanReportEntity(ScanEntity scanEntity);
     ScanReportModel ScanReportEntityToScanReportModel(ScanReportEntity scanReport);
 
@@ -101,3 +103,4 @@ public interface MapStructMapper {
     @Mapping(source = "remark", target = "remark")
     MCSModel ScanReportModelToMCSModel(ScanReportModel scanReportModel);
 }
+
