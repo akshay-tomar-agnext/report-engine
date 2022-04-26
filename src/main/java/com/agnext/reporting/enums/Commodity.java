@@ -8,6 +8,7 @@ import lombok.Getter;
 public enum Commodity {
     RAGI("Ragi"),
     PADDY("Paddy"),
+    RICE("Rice"),
     JOWAR("Jowar");
 
     private final String name;

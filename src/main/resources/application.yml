@@ -1,6 +1,5 @@
 spring:
   jpa:
-    show-sql: true
     hibernate.ddl-auto: none
     database-platform: org.hibernate.dialect.MySQL5Dialect
 
@@ -13,10 +12,7 @@ spring:
     properties:
       org.quartz.threadPool.threadCount: 25
 
-email:
-  from: support@agnext.in
-  subject: KCS Daily Report
-  content: Below attached the report for the scans posted before
+url: "http://23.98.216.140:9456/notification/email"
 
 
 server:
@@ -413,13 +409,50 @@ analyticsconfig:
       - Stone
       - Stones
 
+    aflatoxin:
+      - Aflatoxin
+      - aflatoxin
+
+    asta-colour:
+      - Asta-Colour
+      - asta-colour
+      - Asta-colour
+      - asta-Colour
+
+    Capsaicin:
+      - Capsaicin
+      - capsaicin
+
+    ddp:
+      - ddp
+      - DDP
+      - Ddp
+
+    good:
+      - good
+      - Good
+
+    pows:
+      - pws
+      - pows
+      - Pows
+
+    mip:
+      - mip
+      - MIP
+      - Mip
+
+
 
 details:
   customers:
    KCS:
      customerId: 213
-     frequency: daily
-     cronExpression: 0 0 5 * * ?
+     frequency: from day 1
+     cronExpression: 0 0/3 * * * ?
+     from: support@agnext.in
+     subject: KCS Daily Report
+     content: Below attached the report for the scans posted before
      emails:
        - akshay.tomar@agnext.in
 #       - karnataka.supervisor1@agnext.in
@@ -429,6 +462,15 @@ details:
 #       - karnataka.supervisor@agnext.in
 #       - alok.singh@agnext.in
 #       - pratik.datta@agnext.in
+   MCS:
+     customerId: 212
+     frequency: from day 1
+     cronExpression: 0 0/3 * * * ?
+     from: support@agnext.in
+     subject: MCS Daily Report
+     content: Below attached the report for the scans posted before
+     emails:
+         - akshay.tomar@agnext.in
 
 
 
@@ -442,16 +484,16 @@ spring:
     cassandra:
       contact-points: localhost
       port: 9042
-      keyspace-name: reporting_dev_test
+      keyspace-name: reporting_dev
       local-datacenter: datacenter1
       schema-action: create_if_not_exists
       username: cassandra
       password: cassandra
       request:
-        timeout: 10s
+        timeout: 30s
       connection:
-        connect-timeout: 10s
-        init-query-timeout: 10s
+        connect-timeout: 30s
+        init-query-timeout: 30s
   config:
     activate:
       on-profile: local

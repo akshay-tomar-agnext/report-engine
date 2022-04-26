@@ -11,7 +11,7 @@ import java.util.List;
 public interface ScanRepository extends JpaRepository<ScanEntity, Long> {
 
 
-    List<ScanEntity> findByCustomerIdAndIdGreaterThanAndIsValid(Long customerId, Long id,Boolean isValid);
+    List<ScanEntity> findByCustomerIdAndIdGreaterThanAndIsValid(Long customerId, Long id, Boolean isValid);
 
     @Query(value = "Select * from scm_scans s WHERE s.company_id = :id AND s.is_valid = true ORDER BY id ASC LIMIT 1",nativeQuery = true)
     ScanEntity findTopByCustomerIdAndIdOrderByIdAsc(Long id);

@@ -1,8 +1,11 @@
 package com.agnext.reporting.scheduler;
 
+import com.agnext.reporting.adapter.MapStructMapper;
 import com.agnext.reporting.model.CredentialModel;
+import com.agnext.reporting.model.EmailData;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.mapstruct.factory.Mappers;
 import org.quartz.*;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,7 @@ import javax.annotation.PreDestroy;
 public class SchedulerService {
 
     private final Scheduler quartzScheduler;
+    private final MapStructMapper mapStructMapper = Mappers.getMapper(MapStructMapper.class);
 
     @PostConstruct
     public void start() {
@@ -40,7 +44,8 @@ public class SchedulerService {
         map.put("Customer", customerName);
         map.put("CustomerId", credentialModel.getCustomerId());
         map.put("Frequency", credentialModel.getFrequency());
-        map.put("Emails", credentialModel.getEmails());
+        EmailData emailData = mapStructMapper.CredentialModelToEmailData(credentialModel);
+        map.put("emailData", emailData);
 
         JobDetail jobDetail = JobBuilder.newJob(Job.class)
                 .withIdentity(customerName, jobGroup).usingJobData(map).build();

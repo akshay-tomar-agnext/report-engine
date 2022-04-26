@@ -36,6 +36,8 @@ public enum ReportFormat {
     SLIGHTLYDAMAGEDDISCOLOURED("slightlyDamagedDiscoloured","Slightly Damaged, Discoloured grains "),
     SHRIVELLEDIMMATUTE("ShriveledImmatureGrains","Shriveled & immature grains"),
     WEWILLEDGRAINS("WeevilledGrains","Weevilled grains "),
+    IMMATURE("immature","immature"),
+    ADMIXTURE2("admixture","admixture"),
     AMOUNT("amount","amount"),
     REMARKS("remark","REMARKS");
 

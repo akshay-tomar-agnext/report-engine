@@ -25,7 +25,7 @@ public class ReportController {
     public void sendExcelReportBetweenDates()
             throws IOException, NoSuchFieldException, IllegalAccessException, MessagingException,
             ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException {
-        reportGeneratorService.generateReport(LocalDate.now().minusMonths(4), LocalDate.now(), 0L, 212L, new String[]{"akshay.tomar@agnext.in"});
+//        reportGeneratorService.generateReport(LocalDate.now().minusMonths(4), LocalDate.now(), 0L, 212L, new String[]{"akshay.tomar@agnext.in"});
     }
 
 }

@@ -11,10 +11,10 @@ import java.lang.reflect.Field;
 
 @Setter
 @Getter
-@Table("scan_report")
+@Table("report")
 public class ScanReportEntity {
 
-    @PrimaryKeyColumn(name = "scan_id",type = PrimaryKeyType.PARTITIONED)
+    @PrimaryKeyColumn(name = "scan_id",ordinal = 1,type = PrimaryKeyType.CLUSTERED,ordering = Ordering.ASCENDING)
     public Long scanId;
 
     @Column("farmer_code")
@@ -62,7 +62,7 @@ public class ScanReportEntity {
     @Column("installation_center_id")
     public String installatonCenterId;
 
-    @Column("company_id")
+    @PrimaryKeyColumn(name = "company_id",ordinal = 0,type = PrimaryKeyType.PARTITIONED)
     public String customerId;
 
     @Column("date_done")
@@ -294,377 +294,377 @@ public class ScanReportEntity {
     public String eventStatus;
 
     @Column("moisture_manual")
-    public Double moistureManual;
+    public String moistureManual;
     @Column("moisture_visio_count")
-    public Double moistureVisioCount;
+    public String moistureVisioCount;
     @Column("moisture_visio_density")
-    public Double moistureVisioDensity;
+    public String moistureVisioDensity;
 
     @Column("foreign_matter_manual")
-    public Double foreignMatterManual;
+    public String foreignMatterManual;
     @Column("foreign_matter_visio_count")
-    public Double foreignMatterVisioCount;
+    public String foreignMatterVisioCount;
     @Column("foreign_matter_visio_density")
-    public Double foreignMatterVisioDensity;
+    public String foreignMatterVisioDensity;
 
     @Column("foreign_matter_organic_manual")
-    public Double foreignMatterOrganicManual;
+    public String foreignMatterOrganicManual;
     @Column("foreign_matter_organic_visio_count")
-    public Double foreignMatterOrganicVisioCount;
+    public String foreignMatterOrganicVisioCount;
     @Column("foreign_matter_organic_visio_density")
-    public Double foreignMatterOrganicVisioDensity;
+    public String foreignMatterOrganicVisioDensity;
 
     @Column("admixture_manual")
-    public Double admixtureManual;
+    public String admixtureManual;
     @Column("admixture_visio_count")
-    public Double admixtureVisioCount;
+    public String admixtureVisioCount;
     @Column("admixture_visio_density")
-    public Double admixtureVisioDensity;
+    public String admixtureVisioDensity;
 
     @Column("damaged_manual")
-    public Double damagedManual;
+    public String damagedManual;
     @Column("damaged_visio_count")
-    public Double damagedVisioCount;
+    public String damagedVisioCount;
     @Column("damaged_visio_density")
-    public Double damagedVisioDensity;
+    public String damagedVisioDensity;
 
     @Column("weevilled_manual")
-    public Double weevilledManual;
+    public String weevilledManual;
     @Column("weevilled_visio_count")
-    public Double weevilledVisioCount;
+    public String weevilledVisioCount;
     @Column("weevilled_visio_density")
-    public Double weevilledVisioDensity;
+    public String weevilledVisioDensity;
 
     @Column("shrivelled_and_immature_manual")
-    public Double shrivelledAndImmatureManual;
+    public String shrivelledAndImmatureManual;
     @Column("shrivelled_and_immature_visio_count")
-    public Double shrivelledAndImmatureVisioCount;
+    public String shrivelledAndImmatureVisioCount;
     @Column("shrivelled_and_immature_visio_density")
-    public Double shrivelledAndImmatureVisioDensity;
+    public String shrivelledAndImmatureVisioDensity;
 
     @Column("slightly_damaged_manual")
-    public Double slightlyDamagedManual;
+    public String slightlyDamagedManual;
     @Column("slightly_damaged_visio_count")
-    public Double slightlyDamagedVisioCount;
+    public String slightlyDamagedVisioCount;
     @Column("slightly_damaged_visio_density")
-    public Double slightlyDamagedVisioDensity;
+    public String slightlyDamagedVisioDensity;
 
     @Column("pods_of_other_variety_manual")
-    public Double podsOfOtherVarietyManual;
+    public String podsOfOtherVarietyManual;
     @Column("pods_of_other_variety_visio_count")
-    public Double podsOfOtherVarietyVisioCount;
+    public String podsOfOtherVarietyVisioCount;
     @Column("pods_of_other_variety_visio_density")
-    public Double podsOfOtherVarietyVisioDensity;
+    public String podsOfOtherVarietyVisioDensity;
 
     @Column("shelling_manual")
-    public Double shellingManual;
+    public String shellingManual;
     @Column("shelling_visio_count")
-    public Double shellingVisioCount;
+    public String shellingVisioCount;
     @Column("shelling_visio_density")
-    public Double shellingVisioDensity;
+    public String shellingVisioDensity;
 
     @Column("damaged_and_weevilled_manual")
-    public Double damagedAndWeevilledManual;
+    public String damagedAndWeevilledManual;
     @Column("damaged_and_weevilled_visio_count")
-    public Double damagedAndWeevilledVisioCount;
+    public String damagedAndWeevilledVisioCount;
     @Column("damaged_and_weevilled_visio_density")
-    public Double damagedAndWeevilledVisioDensity;
+    public String damagedAndWeevilledVisioDensity;
 
     @Column("immature_manual")
-    public Double immatureManual;
+    public String immatureManual;
     @Column("immature_visio_count")
-    public Double immatureVisioCount;
+    public String immatureVisioCount;
     @Column("immature_visio_density")
-    public Double immatureVisioDensity;
+    public String immatureVisioDensity;
 
     @Column("other_food_grains_manual")
-    public Double otherFoodGrainsManual;
+    public String otherFoodGrainsManual;
     @Column("other_food_grains_visio_count")
-    public Double otherFoodGrainsVisioCount;
+    public String otherFoodGrainsVisioCount;
     @Column("other_food_grains_visio_density")
-    public Double otherFoodGrainsVisioDensity;
+    public String otherFoodGrainsVisioDensity;
 
     @Column("small_atrophied_seeds_manual")
-    public Double smallAtrophiedSeedsManual;
+    public String smallAtrophiedSeedsManual;
     @Column("small_atrophied_seeds_visio_count")
-    public Double smallAtrophiedSeedsVisioCount;
+    public String smallAtrophiedSeedsVisioCount;
     @Column("small_atrophied_seeds_visio_density")
-    public Double smallAtrophiedSeedsVisioDensity;
+    public String smallAtrophiedSeedsVisioDensity;
 
     @Column("split_cracked_manual")
-    public Double splitCrackedManual;
+    public String splitCrackedManual;
     @Column("split_cracked_visio_count")
-    public Double splitCrackedVisioCount;
+    public String splitCrackedVisioCount;
     @Column("split_cracked_visio_density")
-    public Double splitCrackedVisioDensity;
+    public String splitCrackedVisioDensity;
 
     @Column("black_tip_manual")
-    public Double blackTipManual;
+    public String blackTipManual;
     @Column("black_tip_visio_count")
-    public Double blackTipVisioCount;
+    public String blackTipVisioCount;
     @Column("black_tip_visio_density")
-    public Double blackTipVisioDensity;
+    public String blackTipVisioDensity;
 
     @Column("broken_manual")
-    public Double brokenManual;
+    public String brokenManual;
     @Column("broken_visio_count")
-    public Double brokenVisioCount;
+    public String brokenVisioCount;
     @Column("broken_visio_density")
-    public Double brokenVisioDensity;
+    public String brokenVisioDensity;
 
     @Column("broken2manual")
-    public Double broken2Manual;
+    public String broken2Manual;
     @Column("broken2visio_count")
-    public Double broken2VisioCount;
+    public String broken2VisioCount;
     @Column("broken2visio_density")
-    public Double broken2VisioDensity;
+    public String broken2VisioDensity;
 
     @Column("clean_manual")
-    public Double cleanManual;
+    public String cleanManual;
     @Column("clean_visio_count")
-    public Double cleanVisioCount;
+    public String cleanVisioCount;
     @Column("clean_visio_density")
-    public Double cleanVisioDensity;
+    public String cleanVisioDensity;
 
     @Column("grain_count_manual")
-    public Double grainCountManual;
+    public String grainCountManual;
     @Column("grain_count_visio_count")
-    public Double grainCountVisioCount;
+    public String grainCountVisioCount;
     @Column("grain_count_visio_density")
-    public Double grainCountVisioDensity;
+    public String grainCountVisioDensity;
 
     @Column("aspect_ratio_manual")
-    public Double aspectRatioManual;
+    public String aspectRatioManual;
     @Column("aspect_ratio_visio_count")
-    public Double aspectRatioVisioCount;
+    public String aspectRatioVisioCount;
     @Column("aspect_ratio_visio_density")
-    public Double aspectRatioVisioDensity;
+    public String aspectRatioVisioDensity;
 
     @Column("length_manual")
-    public Double lengthManual;
+    public String lengthManual;
     @Column("length_visio_count")
-    public Double lengthVisioCount;
+    public String lengthVisioCount;
     @Column("length_visio_density")
-    public Double lengthVisioDensity;
+    public String lengthVisioDensity;
 
     @Column("width_manual")
-    public Double widthManual;
+    public String widthManual;
     @Column("width_visio_count")
-    public Double widthVisioCount;
+    public String widthVisioCount;
     @Column("width_visio_density")
-    public Double widthVisioDensity;
+    public String widthVisioDensity;
 
     @Column("karnal_bunt_manual")
-    public Double karnalBuntManual;
+    public String karnalBuntManual;
     @Column("karnal_bunt_visio_count")
-    public Double karnalBuntVisioCount;
+    public String karnalBuntVisioCount;
     @Column("karnal_bunt_visio_density")
-    public Double karnalBuntVisioDensity;
+    public String karnalBuntVisioDensity;
 
     @Column("red_wheat_manual")
-    public Double redWheatManual;
+    public String redWheatManual;
     @Column("red_wheat_visio_count")
-    public Double redWheatVisioCount;
+    public String redWheatVisioCount;
     @Column("red_wheat_visio_density")
-    public Double redWheatVisioDensity;
+    public String redWheatVisioDensity;
 
     @Column("fungus_manual")
-    public Double fungusManual;
+    public String fungusManual;
     @Column("fungus_visio_count")
-    public Double fungusVisioCount;
+    public String fungusVisioCount;
     @Column("fungus_visio_density")
-    public Double fungusVisioDensity;
+    public String fungusVisioDensity;
 
     @Column("fungus_damaged_manual")
-    public Double fungusDamagedManual;
+    public String fungusDamagedManual;
     @Column("fungus_damaged_visio_count")
-    public Double fungusDamagedVisioCount;
+    public String fungusDamagedVisioCount;
     @Column("fungus_damaged_visio_density")
-    public Double fungusDamagedVisioDensity;
+    public String fungusDamagedVisioDensity;
 
     @Column("white_fungus_manual")
-    public Double whiteFungusManual;
+    public String whiteFungusManual;
     @Column("white_fungus_visio_count")
-    public Double whiteFungusVisioCount;
+    public String whiteFungusVisioCount;
     @Column("white_fungus_visio_density")
-    public Double whiteFungusVisioDensity;
+    public String whiteFungusVisioDensity;
 
     @Column("temperature_manual")
-    public Double temperatureManual;
+    public String temperatureManual;
     @Column("temperature_visio_count")
-    public Double temperatureVisioCount;
+    public String temperatureVisioCount;
     @Column("temperature_visio_density")
-    public Double temperatureVisioDensity;
+    public String temperatureVisioDensity;
 
     @Column("moisture_weight_manual")
-    public Double moistureWeightManual;
+    public String moistureWeightManual;
     @Column("moisture_weight_visio_count")
-    public Double moistureWeightVisioCount;
+    public String moistureWeightVisioCount;
     @Column("moisture_weight_visio_density")
-    public Double moistureWeightVisioDensity;
+    public String moistureWeightVisioDensity;
 
     @Column("black_manual")
-    public Double blackManual;
+    public String blackManual;
     @Column("black_visio_count")
-    public Double blackVisioCount;
+    public String blackVisioCount;
     @Column("black_visio_density")
-    public Double blackVisioDensity;
+    public String blackVisioDensity;
 
     @Column("red_manual")
-    public Double redManual;
+    public String redManual;
     @Column("red_visio_count")
-    public Double redVisioCount;
+    public String redVisioCount;
     @Column("red_visio_density")
-    public Double redVisioDensity;
+    public String redVisioDensity;
 
     @Column("shrivelled_manual")
-    public Double shrivelledManual;
+    public String shrivelledManual;
     @Column("shrivelled_visio_count")
-    public Double shrivelledVisioCount;
+    public String shrivelledVisioCount;
     @Column("shrivelled_visio_density")
-    public Double shrivelledVisioDensity;
+    public String shrivelledVisioDensity;
 
     @Column("tcw_manual")
-    public Double tcwManual;
+    public String tcwManual;
     @Column("tcw_visio_count")
-    public Double tcwVisioCount;
+    public String tcwVisioCount;
     @Column("tcw_visio_density")
-    public Double tcwVisioDensity;
+    public String tcwVisioDensity;
 
     @Column("radius_manual")
-    public Double radiusManual;
+    public String radiusManual;
     @Column("radius_visio_count")
-    public Double radiusVisioCount;
+    public String radiusVisioCount;
     @Column("radius_visio_density")
-    public Double radiusVisioDensity;
+    public String radiusVisioDensity;
 
     @Column("green_manual")
-    public Double greenManual;
+    public String greenManual;
     @Column("green_visio_count")
-    public Double greenVisioCount;
+    public String greenVisioCount;
     @Column("green_visio_density")
-    public Double greenVisioDensity;
+    public String greenVisioDensity;
 
     @Column("discolored_manual")
-    public Double discoloredManual;
+    public String discoloredManual;
     @Column("discolored_visio_count")
-    public Double discoloredVisioCount;
+    public String discoloredVisioCount;
     @Column("discolored_visio_density")
-    public Double discoloredVisioDensity;
+    public String discoloredVisioDensity;
 
     @Column("starch_manual")
-    public Double starchManual;
+    public String starchManual;
     @Column("starch_visio_count")
-    public Double starchVisioCount;
+    public String starchVisioCount;
     @Column("starch_visio_density")
-    public Double starchVisioDensity;
+    public String starchVisioDensity;
 
     @Column("flakes_manual")
-    public Double flakesManual;
+    public String flakesManual;
     @Column("flakes_visio_count")
-    public Double flakesVisioCount;
+    public String flakesVisioCount;
     @Column("flakes_visio_density")
-    public Double flakesVisioDensity;
+    public String flakesVisioDensity;
 
     @Column("husk_manual")
-    public Double huskManual;
+    public String huskManual;
     @Column("husk_visio_count")
-    public Double huskVisioCount;
+    public String huskVisioCount;
     @Column("husk_visio_density")
-    public Double huskVisioDensity;
+    public String huskVisioDensity;
 
     @Column("water_damaged_manual")
-    public Double waterDamagedManual;
+    public String waterDamagedManual;
     @Column("water_damaged_visio_count")
-    public Double waterDamagedVisioCount;
+    public String waterDamagedVisioCount;
     @Column("water_damaged_visio_density")
-    public Double waterDamagedVisioDensity;
+    public String waterDamagedVisioDensity;
 
     @Column("insect_damaged_matter_manual")
-    public Double insectDamagedMatterManual;
+    public String insectDamagedMatterManual;
     @Column("insect_damaged_matter_visio_count")
-    public Double insectDamagedMatterVisioCount;
+    public String insectDamagedMatterVisioCount;
     @Column("insect_damaged_matter_visio_density")
-    public Double insectDamagedMatterVisioDensity;
+    public String insectDamagedMatterVisioDensity;
 
     @Column("shrunken_manual")
-    public Double shrunkenManual;
+    public String shrunkenManual;
     @Column("shrunken_visio_count")
-    public Double shrunkenVisioCount;
+    public String shrunkenVisioCount;
     @Column("shrunken_visio_density")
-    public Double shrunkenVisioDensity;
+    public String shrunkenVisioDensity;
 
     @Column("split_and_thrips_capsules_manual")
-    public Double splitAndThripsCapsulesManual;
+    public String splitAndThripsCapsulesManual;
     @Column("split_and_thrips_capsules_visio_count")
-    public Double splitAndThripsCapsulesVisioCount;
+    public String splitAndThripsCapsulesVisioCount;
     @Column("split_and_thrips_capsules_visio_density")
-    public Double splitAndThripsCapsulesVisioDensity;
+    public String splitAndThripsCapsulesVisioDensity;
 
     @Column("sprouted_weevilled_manual")
-    public Double sproutedWeevilledManual;
+    public String sproutedWeevilledManual;
     @Column("sprouted_weevilled_visio_count")
-    public Double sproutedWeevilledVisioCount;
+    public String sproutedWeevilledVisioCount;
     @Column("sprouted_weevilled_visio_density")
-    public Double sproutedWeevilledVisioDensity;
+    public String sproutedWeevilledVisioDensity;
 
     @Column("live_infestation_manual")
-    public Double liveInfestationManual;
+    public String liveInfestationManual;
     @Column("live_infestation_visio_count")
-    public Double liveInfestationVisioCount;
+    public String liveInfestationVisioCount;
     @Column("live_infestation_visio_density")
-    public Double liveInfestationVisioDensity;
+    public String liveInfestationVisioDensity;
 
     @Column("molds_manual")
-    public Double moldsManual;
+    public String moldsManual;
     @Column("molds_visio_count")
-    public Double moldsVisioCount;
+    public String moldsVisioCount;
     @Column("molds_visio_density")
-    public Double moldsVisioDensity;
+    public String moldsVisioDensity;
 
     @Column("whitish_seeds_manual")
-    public Double whitishSeedsManual;
+    public String whitishSeedsManual;
     @Column("whitish_seeds_visio_count")
-    public Double whitishSeedsVisioCount;
+    public String whitishSeedsVisioCount;
     @Column("whitish_seeds_visio_density")
-    public Double whitishSeedsVisioDensity;
+    public String whitishSeedsVisioDensity;
 
     @Column("chalky_grain_manual")
-    public Double chalkyGrainManual;
+    public String chalkyGrainManual;
     @Column("chalky_grain_visio_count")
-    public Double chalkyGrainVisioCount;
+    public String chalkyGrainVisioCount;
     @Column("chalky_grain_visio_density")
-    public Double chalkyGrainVisioDensity;
+    public String chalkyGrainVisioDensity;
 
     @Column("empty_shell_manual")
-    public Double emptyShellManual;
+    public String emptyShellManual;
     @Column("empty_shell_visio_count")
-    public Double emptyShellVisioCount;
+    public String emptyShellVisioCount;
     @Column("empty_shell_visio_density")
-    public Double emptyShellVisioDensity;
+    public String emptyShellVisioDensity;
 
     @Column("hulling_recovery_manual")
-    public Double hullingRecoveryManual;
+    public String hullingRecoveryManual;
     @Column("hulling_recovery_visio_count")
-    public Double hullingRecoveryVisioCount;
+    public String hullingRecoveryVisioCount;
     @Column("hulling_recovery_visio_density")
-    public Double hullingRecoveryVisioDensity;
+    public String hullingRecoveryVisioDensity;
 
     @Column("undehusked_splits_manual")
-    public Double undehuskedSplitsManual;
+    public String undehuskedSplitsManual;
     @Column("undehusked_splits_visio_count")
-    public Double undehuskedSplitsVisioCount;
+    public String undehuskedSplitsVisioCount;
     @Column("undehusked_splits_visio_density")
-    public Double undehuskedSplitsVisioDensity;
+    public String undehuskedSplitsVisioDensity;
 
     @Column("stone_manual")
-    public Double stoneManual;
+    public String stoneManual;
     @Column("stone_visio_count")
-    public Double stoneVisioCount;
+    public String stoneVisioCount;
     @Column("stone_visio_density")
-    public Double stoneVisioDensity;
+    public String stoneVisioDensity;
 
-    public void setField(String fieldName, Double value)
+    public void setField(String fieldName, String value)
             throws NoSuchFieldException, IllegalAccessException {
         Field field = getClass().getDeclaredField(fieldName);
         field.set(this, value);

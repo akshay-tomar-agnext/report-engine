@@ -1,4 +1,5 @@
-package com.agnext.reporting.model;
+package com.agnext.reporting.model.mcs;
+
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,18 +1,20 @@
 package com.agnext.reporting.service.impl;
 
 import com.agnext.reporting.adapter.MapStructMapper;
-import com.agnext.reporting.enums.Constants;
 import com.agnext.reporting.entity.report.ScanReportEntity;
 import com.agnext.reporting.enums.Commodity;
 import com.agnext.reporting.enums.Customer;
-import com.agnext.reporting.model.MCSModel;
+import com.agnext.reporting.model.EmailData;
 import com.agnext.reporting.model.ScanReportModel;
 import com.agnext.reporting.model.kcs.KCSJowrModel;
 import com.agnext.reporting.model.kcs.KCSPaddyModel;
 import com.agnext.reporting.model.kcs.KCSRagiModel;
+import com.agnext.reporting.model.mcs.MCSModel;
 import com.agnext.reporting.repository.report.ScanReportRepository;
 import com.agnext.reporting.service.ReportGeneratorService;
 import lombok.AllArgsConstructor;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
@@ -37,7 +39,7 @@ public class ReportGeneratorServiceImpl implements ReportGeneratorService {
     private final MapStructMapper mapStructMapper = Mappers.getMapper(MapStructMapper.class);
 
     @Override
-    public void generateReport(LocalDate startDate, LocalDate endDate, Long days, Long customerId, String[] emails)
+    public void generateReport(LocalDate startDate, LocalDate endDate, Long days, Long customerId, EmailData emailData)
             throws IOException, NoSuchFieldException, IllegalAccessException {
         if (startDate == null) {
             if (days == null)
@@ -52,34 +54,38 @@ public class ReportGeneratorServiceImpl implements ReportGeneratorService {
         List<ScanReportModel> reportModels = reportEntities
                 .stream()
                 .filter(scanReportEntity -> Long.parseLong(scanReportEntity.getCreatedOn()) >= toEpochMillis(LocalDate.from(finalStartDate)) &&
-                        Long.parseLong(scanReportEntity.getCreatedOn()) <= toEpochMillis(LocalDate.from(endDate)) &&
-                        scanReportEntity.getIsValid())
+                        Long.parseLong(scanReportEntity.getCreatedOn()) <= toEpochMillis(LocalDate.from(endDate)))
                 .map(mapStructMapper::ScanReportEntityToScanReportModel)
                 .collect(Collectors.toList());
 
         ByteArrayInputStream inputStream = null;
         if (customerId.equals(Customer.KCS.getCode())) {
             inputStream = KCSReport(reportModels);
-            senderService.sendEmail(emails, inputStream);
+            senderService.sendEmail(emailData, inputStream);
         } else if (customerId.equals(Customer.MCS.getCode())) {
             inputStream = MCSReport(reportModels);
-            senderService.sendEmail(emails, inputStream);
+            senderService.sendEmail(emailData, inputStream);
         }
     }
 
-
     private ByteArrayInputStream MCSReport(List<ScanReportModel> reportModels) throws IOException,
             NoSuchFieldException, IllegalAccessException {
-        List<MCSModel> mcsModelList = reportModels
-                .stream()
-                .map(mapStructMapper::ScanReportModelToMCSModel)
-                .collect(Collectors.toList());
-
+        List<MCSModel> riceList = new ArrayList<>();
+        List<MCSModel> paddyList = new ArrayList<>();
+        reportModels.forEach(scanReport -> {
+            if (StringUtils.equalsIgnoreCase(scanReport.getCommodityName(), Commodity.PADDY.getName()))
+                paddyList.add(mapStructMapper.ScanReportModelToMCSModel(scanReport));
+            else if (StringUtils.equalsIgnoreCase(scanReport.getCommodityName(), Commodity.RICE.getName()))
+                riceList.add(mapStructMapper.ScanReportModelToMCSModel(scanReport));
+        });
         ByteArrayInputStream inputStream;
         XSSFWorkbook workbook = new XSSFWorkbook();
-        if (mcsModelList.isEmpty())
-            mcsModelList.add(new MCSModel());
-        inputStream = excelService.generateExcelSheet(workbook, Constants.SCAN_REPORT, mcsModelList);
+        if (CollectionUtils.isEmpty(riceList))
+            riceList.add(new MCSModel());
+        excelService.generateExcelSheet(workbook, Commodity.RICE.getName(), riceList);
+        if (CollectionUtils.isEmpty(paddyList))
+            paddyList.add(new MCSModel());
+        inputStream = excelService.generateExcelSheet(workbook, Commodity.PADDY.getName(), paddyList);
         workbook.close();
         return inputStream;
     }

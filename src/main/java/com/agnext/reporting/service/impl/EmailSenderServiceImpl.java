@@ -20,32 +20,18 @@ import java.time.ZoneId;
 @Service
 @Slf4j
 public class EmailSenderServiceImpl implements EmailSenderService {
+    @Value("${url}")
+    private String url;
 
-    public static final String URL = "http://23.98.216.140:9456/notification/email";
-
-    @Value("${email.from}")
-    private String from;
-
-    @Value("${email.subject}")
-    private String subject;
-
-    @Value("${email.content}")
-    private String content;
-
-    public void sendEmail(String[] toEmail, ByteArrayInputStream inputStream) {
+    public void sendEmail(EmailData emailData, ByteArrayInputStream inputStream) {
 
         log.info("Sending mails");
         NotificationData notificationData = new NotificationData();
-        EmailData emailData = new EmailData();
         try {
             RestTemplate restTemplate = new RestTemplate();
             LinkedMultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
             map.add("files", new FileSystemResource(convertInputStreamToFile(inputStream)));
-            emailData.setEmailToRecipient(toEmail);
-            emailData.setEmailContent(content + " " + LocalDate.now(ZoneId.of(Constants.DEFAULT_ZONE)) + ".");
-            emailData.setEmailSender(from);
-            emailData.setEmailSubject(subject);
-
+            emailData.setEmailContent(emailData.getEmailContent() + " " + LocalDate.now(ZoneId.of(Constants.DEFAULT_ZONE)) + ".");
             notificationData.setNotificationTypeId(2);
             notificationData.setEmail(emailData);
             map.add("data", notificationData);
@@ -53,7 +39,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
             headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
             HttpEntity<LinkedMultiValueMap<String, Object>> requestEntity = new HttpEntity<>(map, headers);
-            ResponseEntity<String> result = restTemplate.exchange(URL, HttpMethod.POST, requestEntity, String.class);
+            ResponseEntity<String> result = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
             log.info("Mail sent successfully");
         } catch (Exception e) {
             e.printStackTrace();

@@ -9,7 +9,8 @@ public enum Frequency {
     DAILY("Daily"),
     WEEKLY("Weekly"),
     MONTHLY("Monthly"),
-    YEARLY("Yearly");
+    YEARLY("Yearly"),
+    FROMDAY1("from day 1");
 
     private final String time;
 }

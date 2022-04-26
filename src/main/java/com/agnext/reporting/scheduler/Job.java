@@ -1,6 +1,7 @@
 package com.agnext.reporting.scheduler;
 
 import com.agnext.reporting.enums.Frequency;
+import com.agnext.reporting.model.EmailData;
 import com.agnext.reporting.service.impl.ReportGeneratorServiceImpl;
 import lombok.AllArgsConstructor;
 import org.quartz.JobDataMap;
@@ -25,19 +26,20 @@ public class Job extends QuartzJobBean {
         JobDataMap jobDataMap = context.getMergedJobDataMap();
         String frequency = jobDataMap.getString(FREQUENCY);
         Long customerId = jobDataMap.getLong(CUSTOMER_ID);
-        String[] email = (String[]) jobDataMap.get(EMAILS);
+        EmailData emailData = (EmailData) jobDataMap.get("emailData");
 
         LocalDate dateTime = null;
         if (frequency.equalsIgnoreCase(Frequency.DAILY.getTime())) {
-            dateTime = LocalDate.now().minusMonths(4);
+            dateTime = LocalDate.now().minusDays(1);
         } else if (frequency.equalsIgnoreCase(Frequency.WEEKLY.getTime())) {
             dateTime = LocalDate.now().minusWeeks(1);
         } else if (frequency.equalsIgnoreCase(Frequency.MONTHLY.getTime())) {
             dateTime = LocalDate.now().minusMonths(1);
-        }
+        } else
+            dateTime = LocalDate.now().minusMonths(6);
 
         try {
-            reportGeneratorService.generateReport(dateTime, LocalDate.now(), DAYS, customerId, email);
+            reportGeneratorService.generateReport(dateTime, LocalDate.now(), DAYS, customerId, emailData);
         } catch (Exception e) {
             e.printStackTrace();
         }
