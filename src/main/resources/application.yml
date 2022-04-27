@@ -449,7 +449,7 @@ details:
    KCS:
      customerId: 213
      frequency: from day 1
-     cronExpression: 0 0/4 * * * ?
+     cronExpression: 0 0 6 * * ?
      from: support@agnext.in
      subject: KCS Daily Report
      content: Below attached the report for the scans posted before
@@ -465,7 +465,7 @@ details:
    MCS:
      customerId: 212
      frequency: from day 1
-     cronExpression: 0 0/6 * * * ?
+     cronExpression: 0 45 5 * * ?
      from: support@agnext.in
      subject: MCS Daily Report
      content: Below attached the report for the scans posted before
@@ -474,7 +474,7 @@ details:
    Digital-Green:
      customerId: 183
      frequency: Daily
-     cronExpression: 0 0/8 * * * ?
+     cronExpression: 0 30 5 * * ?
      from: support@agnext.in
      subject: Digital Green Daily Report
      content: Below attached the report for the scans posted on
