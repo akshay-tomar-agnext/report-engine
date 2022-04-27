@@ -1,5 +1,6 @@
 package com.agnext.reporting.repository.scan;
 
+import com.agnext.reporting.entity.dg.DGScanEntity;
 import com.agnext.reporting.entity.scan.ScanEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

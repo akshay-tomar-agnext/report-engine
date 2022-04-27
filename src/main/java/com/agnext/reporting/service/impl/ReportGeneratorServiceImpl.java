@@ -4,8 +4,10 @@ import com.agnext.reporting.adapter.MapStructMapper;
 import com.agnext.reporting.entity.report.ScanReportEntity;
 import com.agnext.reporting.enums.Commodity;
 import com.agnext.reporting.enums.Customer;
+import com.agnext.reporting.enums.DGLocation;
 import com.agnext.reporting.model.EmailData;
 import com.agnext.reporting.model.ScanReportModel;
+import com.agnext.reporting.model.dg.DGModel;
 import com.agnext.reporting.model.kcs.KCSJowrModel;
 import com.agnext.reporting.model.kcs.KCSPaddyModel;
 import com.agnext.reporting.model.kcs.KCSRagiModel;
@@ -23,6 +25,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -53,8 +56,8 @@ public class ReportGeneratorServiceImpl implements ReportGeneratorService {
         LocalDate finalStartDate = startDate;
         List<ScanReportModel> reportModels = reportEntities
                 .stream()
-                .filter(scanReportEntity -> Long.parseLong(scanReportEntity.getCreatedOn()) >= toEpochMillis(LocalDate.from(finalStartDate)) &&
-                        Long.parseLong(scanReportEntity.getCreatedOn()) <= toEpochMillis(LocalDate.from(endDate)))
+                .filter(scanReportEntity -> (StringToDate(scanReportEntity.getCreatedOnDate()).isAfter(finalStartDate) &&
+                        (StringToDate(scanReportEntity.getCreatedOnDate()).isBefore(endDate))))
                 .map(mapStructMapper::ScanReportEntityToScanReportModel)
                 .collect(Collectors.toList());
 
@@ -65,7 +68,43 @@ public class ReportGeneratorServiceImpl implements ReportGeneratorService {
         } else if (customerId.equals(Customer.MCS.getCode())) {
             inputStream = MCSReport(reportModels);
             senderService.sendEmail(emailData, inputStream);
+        } else if (customerId.equals(Customer.DIGITAL_GREENS.getCode())) {
+            inputStream = DGReport(reportModels);
+            senderService.sendEmail(emailData, inputStream);
         }
+    }
+
+    private ByteArrayInputStream DGReport(List<ScanReportModel> reportModels) throws IOException, NoSuchFieldException, IllegalAccessException {
+        List<DGModel> kolithad = new ArrayList<>();
+        List<DGModel> chandralapadu = new ArrayList<>();
+        List<DGModel> guntur = new ArrayList<>();
+        List<DGModel> vatsavai = new ArrayList<>();
+        reportModels.forEach(scanReport -> {
+            if (StringUtils.equalsIgnoreCase(scanReport.getLocation(), DGLocation.KOLITHAD.getCode()))
+                kolithad.add(mapStructMapper.ScanReportModelToDGModel(scanReport));
+            else if (StringUtils.equalsIgnoreCase(scanReport.getLocation(), DGLocation.CHANDRALAPADU.getCode()))
+                chandralapadu.add(mapStructMapper.ScanReportModelToDGModel(scanReport));
+            else if (StringUtils.equalsIgnoreCase(scanReport.getLocation(), DGLocation.GUNTUR.getCode()))
+                guntur.add(mapStructMapper.ScanReportModelToDGModel(scanReport));
+            else if (StringUtils.equalsIgnoreCase(scanReport.getLocation(), DGLocation.VATSAVAI.getCode()))
+                vatsavai.add(mapStructMapper.ScanReportModelToDGModel(scanReport));
+        });
+        ByteArrayInputStream inputStream;
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        if (CollectionUtils.isEmpty(kolithad))
+            kolithad.add(new DGModel());
+        excelService.generateExcelSheet(workbook, DGLocation.KOLITHAD.getName(), kolithad);
+        if (CollectionUtils.isEmpty(chandralapadu))
+            chandralapadu.add(new DGModel());
+        excelService.generateExcelSheet(workbook, DGLocation.CHANDRALAPADU.getName(), chandralapadu);
+        if (CollectionUtils.isEmpty(guntur))
+            guntur.add(new DGModel());
+        excelService.generateExcelSheet(workbook, DGLocation.GUNTUR.getName(), guntur);
+        if (CollectionUtils.isEmpty(vatsavai))
+            vatsavai.add(new DGModel());
+        inputStream = excelService.generateExcelSheet(workbook, DGLocation.VATSAVAI.getName(), vatsavai);
+        workbook.close();
+        return inputStream;
     }
 
     private ByteArrayInputStream MCSReport(List<ScanReportModel> reportModels) throws IOException,
@@ -121,5 +160,10 @@ public class ReportGeneratorServiceImpl implements ReportGeneratorService {
         inputStream = excelService.generateExcelSheet(workbook, Commodity.JOWAR.getName(), kcsJowrModelList);
         workbook.close();
         return inputStream;
+    }
+
+    public LocalDate StringToDate(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy, hh:mm a");
+        return LocalDate.parse(date, formatter);
     }
 }

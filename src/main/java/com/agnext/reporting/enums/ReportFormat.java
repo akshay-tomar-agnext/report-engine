@@ -39,7 +39,22 @@ public enum ReportFormat {
     IMMATURE("immature","immature"),
     ADMIXTURE2("admixture","admixture"),
     AMOUNT("amount","amount"),
-    REMARKS("remark","REMARKS");
+    REMARKS("remark","REMARKS"),
+    VILLAGE("village","VILLAGE"),
+    BLOCK("block","BLOCK"),
+    CONTACT("contactNum","CONTACT NO."),
+    DEVICESERIALNO("deviceSerialNo","Device serial no."),
+    COMMODITY_GROSS_WT("commodityGrossWt","Commodity Gross wt."),
+    COMMODITY_NET_WT("commodityNetWt","Commodity Net wt."),
+    GRADE("grade","Grade"),
+    BUYERSNAME("buyersName","Buyers name"),
+    MANDAL_NAME("mandalName","Mandal name"),
+    BROKEN("broken","broken"),
+    DDP("ddp","ddp"),
+    GOOD("good","good"),
+    POWS("pows","pows"),
+    ASTA_COLOUR("astaColour","asta-colour"),
+    CAPSAICIN("capsaicin","capsaicin");
 
     private final String analysisName;
     private final String reportName;

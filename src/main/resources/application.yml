@@ -419,7 +419,7 @@ analyticsconfig:
       - Asta-colour
       - asta-Colour
 
-    Capsaicin:
+    capsaicin:
       - Capsaicin
       - capsaicin
 
@@ -449,7 +449,7 @@ details:
    KCS:
      customerId: 213
      frequency: from day 1
-     cronExpression: 0 0/3 * * * ?
+     cronExpression: 0 0/4 * * * ?
      from: support@agnext.in
      subject: KCS Daily Report
      content: Below attached the report for the scans posted before
@@ -465,21 +465,33 @@ details:
    MCS:
      customerId: 212
      frequency: from day 1
-     cronExpression: 0 0/3 * * * ?
+     cronExpression: 0 0/6 * * * ?
      from: support@agnext.in
      subject: MCS Daily Report
      content: Below attached the report for the scans posted before
      emails:
          - akshay.tomar@agnext.in
-
+   Digital-Green:
+     customerId: 183
+     frequency: Daily
+     cronExpression: 0 0/8 * * * ?
+     from: support@agnext.in
+     subject: Digital Green Daily Report
+     content: Below attached the report for the scans posted on
+     emails:
+         - akshay.tomar@agnext.in
 
 
 ---
 spring:
   datasource:
-    url: jdbc:mysql://mysql-server-in.mysql.database.azure.com:3306/assaying_prod?serverTimezone=UTC&autoReconnect=true
+    jdbcUrl: jdbc:mysql://mysql-server-in.mysql.database.azure.com:3306/assaying_prod?serverTimezone=UTC&autoReconnect=true
     username: reporting_dev@mysql-server-in
     password: n5bmTEF+LJjC5bsdpcme
+  dg-datasource:
+    jdbcUrl: jdbc:mysql://mysql-server-in.mysql.database.azure.com:3306/chilly? serverTimezone=UTC&autoReconnect=true
+    username: agnextadmin@mysql-server-in
+    password: Agnext@2019#
   data:
     cassandra:
       contact-points: localhost

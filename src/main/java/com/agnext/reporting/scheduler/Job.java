@@ -18,7 +18,6 @@ public class Job extends QuartzJobBean {
     public static final long DAYS = 0L;
     public static final String FREQUENCY = "Frequency";
     public static final String CUSTOMER_ID = "CustomerId";
-    public static final String EMAILS = "Emails";
     private final ReportGeneratorServiceImpl reportGeneratorService;
 
     @Override
@@ -30,7 +29,7 @@ public class Job extends QuartzJobBean {
 
         LocalDate dateTime = null;
         if (frequency.equalsIgnoreCase(Frequency.DAILY.getTime())) {
-            dateTime = LocalDate.now().minusDays(1);
+            dateTime = LocalDate.now().minusDays(2);
         } else if (frequency.equalsIgnoreCase(Frequency.WEEKLY.getTime())) {
             dateTime = LocalDate.now().minusWeeks(1);
         } else if (frequency.equalsIgnoreCase(Frequency.MONTHLY.getTime())) {

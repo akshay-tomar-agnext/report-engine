@@ -3,6 +3,7 @@ package com.agnext.reporting.model;
 import com.agnext.reporting.enums.AssayingTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.cassandra.core.mapping.Column;
 
 import javax.persistence.*;
 
@@ -105,6 +106,23 @@ public class ScanReportModel {
     public AssayingTypeEnum assayingType;
     public String farmerAddress;
     public String eventStatus;
+    private String scanByUserCode;
+    private String clientCode;
+    private String uid;
+    private String userName;
+    private String date;
+    private String farmer;
+    private String village;
+    private String block;
+    private String contactNum;
+    private String adhaar;
+    private String commodityGrossWt;
+    private String commodityNetWt;
+    private String foulSmell;
+    private String vehicle;
+    private String buyersName;
+    private String rate;
+    private String mandalName;
     public String moistureManual;
     public String moistureVisioCount;
     public String moistureVisioDensity;
@@ -264,4 +282,11 @@ public class ScanReportModel {
     public String stoneManual;
     public String stoneVisioCount;
     public String stoneVisioDensity;
+    public String aflatoxin;
+    public String astaColour;
+    public String capsaicin;
+    public String ddp;
+    public String good;
+    public String pows;
+    public String mip;
 }

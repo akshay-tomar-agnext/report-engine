@@ -293,6 +293,57 @@ public class ScanReportEntity {
     @Column("event_status")
     public String eventStatus;
 
+    @Column("scan_by_user_code")
+    private String scanByUserCode;
+
+    @Column("client_code")
+    private String clientCode;
+
+    @Column("uid")
+    private String uid;
+
+    @Column("user_name")
+    private String userName;
+
+    @Column("date")
+    private String date;
+
+    @Column("farmer")
+    private String farmer;
+
+    @Column("village")
+    private String village;
+
+    @Column("block")
+    private String block;
+
+    @Column("contact_num")
+    private String contactNum;
+
+    @Column("adhaar")
+    private String adhaar;
+
+    @Column("commodity_gross_wt")
+    private String commodityGrossWt;
+
+    @Column("commodity_net_wt")
+    private String commodityNetWt;
+
+    @Column("foul_smell")
+    private String foulSmell;
+
+    @Column("vehicle")
+    private String vehicle;
+
+    @Column("buyers_name")
+    private String buyersName;
+
+    @Column("rate")
+    private String rate;
+
+    @Column("mandal_name")
+    private String mandalName;
+
     @Column("moisture_manual")
     public String moistureManual;
     @Column("moisture_visio_count")
@@ -663,6 +714,23 @@ public class ScanReportEntity {
     public String stoneVisioCount;
     @Column("stone_visio_density")
     public String stoneVisioDensity;
+
+    @Column("aflatoxin")
+    public String aflatoxin;
+    @Column("asta_color")
+    public String astaColour;
+    @Column("capsaicin")
+    public String capsaicin;
+    @Column("ddp")
+    public String ddp;
+    @Column("good")
+    public String good;
+    @Column("pows")
+    public String pows;
+    @Column("mip")
+    public String mip;
+
+
 
     public void setField(String fieldName, String value)
             throws NoSuchFieldException, IllegalAccessException {

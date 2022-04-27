@@ -29,8 +29,6 @@ import java.util.Map;
 @SpringBootApplication
 @EnableScheduling
 @EnableCassandraRepositories(basePackageClasses = {ScanReportRepository.class, ScanReportEntity.class})
-@EnableJpaRepositories(excludeFilters = {
-        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = { ScanReportRepository.class ,ScanReportEntity.class}) })
 public class ReportingEngineApplication implements CommandLineRunner {
 
     @Autowired

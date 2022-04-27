@@ -1,10 +1,12 @@
 package com.agnext.reporting.adapter;
 
+import com.agnext.reporting.entity.dg.DGScanEntity;
 import com.agnext.reporting.entity.scan.ScanEntity;
 import com.agnext.reporting.entity.report.ScanReportEntity;
 import com.agnext.reporting.model.CredentialModel;
 import com.agnext.reporting.model.EmailData;
 import com.agnext.reporting.model.ScanReportModel;
+import com.agnext.reporting.model.dg.DGModel;
 import com.agnext.reporting.model.kcs.KCSJowrModel;
 import com.agnext.reporting.model.kcs.KCSPaddyModel;
 import com.agnext.reporting.model.kcs.KCSRagiModel;
@@ -110,5 +112,19 @@ public interface MapStructMapper {
     @Mapping(source = "content",target = "emailContent")
     @Mapping(source = "emails",target = "emailToRecipient")
     EmailData CredentialModelToEmailData(CredentialModel credentialModel);
+
+    @Mapping(source = "id",target = "scanId")
+    ScanReportEntity DGScanEntityToScanReportEntity(DGScanEntity dgScanEntity);
+
+    @Mapping(source = "createdOnDate", target = "sampleDate")
+    @Mapping(source = "location", target = "procurementCenter")
+    @Mapping(source = "commodityName", target = "commodity")
+    @Mapping(source = "farmer", target = "farmerName")
+    @Mapping(source = "sampleId", target = "sampleNo")
+    @Mapping(source = "weight",target = "totalQuantity")
+    @Mapping(source = "brokenManual",target = "broken")
+    @Mapping(source = "foreignMatterManual",target = "foreignMatter")
+    @Mapping(source = "moistureManual",target = "moistureContent")
+    DGModel ScanReportModelToDGModel(ScanReportModel scanReportModel);
 }
 

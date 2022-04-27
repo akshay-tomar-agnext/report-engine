@@ -168,7 +168,17 @@ public enum Analytics {
     UNDEHUSKEDSPLITS3("undehuskedsplits", "VISIO-DENSITY", "undehuskedSplitsVisioDensity"),
     STONE1("stone", "MANUAL", "stoneManual"),
     STONE2("stone", "VISIO-COUNT", "stoneVisioCount"),
-    STONE3("stone", "VISIO-DENSITY", "stoneVisioDensity");
+    STONE3("stone", "VISIO-DENSITY", "stoneVisioDensity"),
+    AFLATOXIN("aflatoxin","AFLATOXIN","aflatoxin"),
+    ASTA_COLOR("asta-colour","PRO","astaColour"),
+    CAPSAICIN("capsaicin","PRO","capsaicin"),
+    BROKEN("broken","VISIO","brokenManual"),
+    DDP("ddp","VISIO","ddp"),
+    FOREIGNMATTER("foreignmatter","VISIO","foreignMatterManual"),
+    GOOD("good","VISIO","good"),
+    MOISTURE("moisturecontent","VISIO","moistureManual"),
+    POWS("pows","VISIO","pows"),
+    MIP("mip","VISIO","mip");
 
     private final String analysisName;
     private final String scanType;
