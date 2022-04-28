@@ -480,27 +480,27 @@ details:
          - shashank.dubey@agnext.in
          - alok.singh@agnext.in
          - jasdeep.kaur@agnext.in
-   Digital-Green:
-     customerId: 183
-     frequency: Daily
-     cronExpression: 0 15 4 * * ?
-     from: support@agnext.in
-     subject: Digital Green Daily Report
-     content: Below attached the report for the scans posted yesterday and report generation date is
-     emails:
-         - akshay.tomar@agnext.in
-         - kamalakar@digitalgreen.org
-         - archana@digitalgreen.org
-         - Narendra@digitalgreen.org
-         - Masthan@digitalgreen.org
-         - Surender@digitalgreen.org
-         - dorayyanaidu.yenugula@vasudhaika.net
-         - kiran.eduru@vasudhaika.net
-         - ishan.vohra@agnext.in
-         - pratik.datta@agnext.in
-         - ramkrishna@agnext.in
-         - shubham@agnext.in
-         - jasdeep.kaur@agnext.in
+#   Digital-Green:
+#     customerId: 183
+#     frequency: Daily
+#     cronExpression: 0 15 4 * * ?
+#     from: support@agnext.in
+#     subject: Digital Green Daily Report
+#     content: Below attached the report for the scans posted yesterday and report generation date is
+#     emails:
+#         - akshay.tomar@agnext.in
+#         - kamalakar@digitalgreen.org
+#         - archana@digitalgreen.org
+#         - Narendra@digitalgreen.org
+#         - Masthan@digitalgreen.org
+#         - Surender@digitalgreen.org
+#         - dorayyanaidu.yenugula@vasudhaika.net
+#         - kiran.eduru@vasudhaika.net
+#         - ishan.vohra@agnext.in
+#         - pratik.datta@agnext.in
+#         - ramkrishna@agnext.in
+#         - shubham@agnext.in
+#         - jasdeep.kaur@agnext.in
 
 
 ---
