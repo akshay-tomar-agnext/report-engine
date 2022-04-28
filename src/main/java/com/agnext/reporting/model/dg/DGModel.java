@@ -25,10 +25,12 @@ public class DGModel {
     public String broken;
     public String foreignMatter;
     public String ddp;
+    public String mip;
     public String good;
     public String pows;
     public String moistureContent;
     public String astaColour;
     public String capsaicin;
     public String amount;
+    public String aflatoxin;
 }

@@ -449,37 +449,58 @@ details:
    KCS:
      customerId: 213
      frequency: from day 1
-     cronExpression: 0 0 6 * * ?
+     cronExpression: 0 0 4 * * ?
      from: support@agnext.in
      subject: KCS Daily Report
      content: Below attached the report for the scans posted before
      emails:
        - akshay.tomar@agnext.in
-#       - karnataka.supervisor1@agnext.in
-#       - anand.botla@agnext.in
-#       - jasdeep.kaur@agnext.in
-#       - shashank.dubey@agnext.in
-#       - karnataka.supervisor@agnext.in
-#       - alok.singh@agnext.in
-#       - pratik.datta@agnext.in
+       - karnataka.supervisor1@agnext.in
+       - anand.botla@agnext.in
+       - jasdeep.kaur@agnext.in
+       - shashank.dubey@agnext.in
+       - karnataka.supervisor@agnext.in
+       - alok.singh@agnext.in
+       - pratik.datta@agnext.in
    MCS:
      customerId: 212
      frequency: from day 1
-     cronExpression: 0 45 5 * * ?
+     cronExpression: 0 30 4 ? * MON,FRI
      from: support@agnext.in
      subject: MCS Daily Report
      content: Below attached the report for the scans posted before
      emails:
          - akshay.tomar@agnext.in
+         - anand.botla@agnext.in
+         - parmeshwar.landge@agnext.in
+         - hardeep.singh@agnext.in
+         - dataentry@agnext.in
+         - aryan@agnext.in
+         - pratik.datta@agnext.in
+         - shashank.dubey@agnext.in
+         - alok.singh@agnext.in
+         - jasdeep.kaur@agnext.in
    Digital-Green:
      customerId: 183
      frequency: Daily
-     cronExpression: 0 30 5 * * ?
+     cronExpression: 0 15 4 * * ?
      from: support@agnext.in
      subject: Digital Green Daily Report
-     content: Below attached the report for the scans posted on
+     content: Below attached the report for the scans posted yesterday and report generation date is
      emails:
          - akshay.tomar@agnext.in
+         - kamalakar@digitalgreen.org
+         - archana@digitalgreen.org
+         - Narendra@digitalgreen.org
+         - Masthan@digitalgreen.org
+         - Surender@digitalgreen.org
+         - dorayyanaidu.yenugula@vasudhaika.net
+         - kiran.eduru@vasudhaika.net
+         - ishan.vohra@agnext.in
+         - pratik.datta@agnext.in
+         - ramkrishna@agnext.in
+         - shubham@agnext.in
+         - jasdeep.kaur@agnext.in
 
 
 ---
@@ -494,7 +515,7 @@ spring:
     password: Agnext@2019#
   data:
     cassandra:
-      contact-points: localhost
+      contact-points: 10.0.1.21
       port: 9042
       keyspace-name: reporting_dev
       local-datacenter: datacenter1

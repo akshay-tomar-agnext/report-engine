@@ -80,6 +80,8 @@ public class ReportGeneratorServiceImpl implements ReportGeneratorService {
         List<DGModel> guntur = new ArrayList<>();
         List<DGModel> vatsavai = new ArrayList<>();
         reportModels.forEach(scanReport -> {
+            if(scanReport.getCapsaicin() != null)
+                scanReport.setCapsaicin(String.valueOf(Math.round(Math.exp(Double.valueOf(scanReport.getCapsaicin())))));
             if (StringUtils.equalsIgnoreCase(scanReport.getLocation(), DGLocation.KOLITHAD.getCode()))
                 kolithad.add(mapStructMapper.ScanReportModelToDGModel(scanReport));
             else if (StringUtils.equalsIgnoreCase(scanReport.getLocation(), DGLocation.CHANDRALAPADU.getCode()))

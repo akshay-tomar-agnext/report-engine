@@ -50,11 +50,13 @@ public enum ReportFormat {
     BUYERSNAME("buyersName","Buyers name"),
     MANDAL_NAME("mandalName","Mandal name"),
     BROKEN("broken","broken"),
-    DDP("ddp","ddp"),
+    DDP("ddp","DDP"),
     GOOD("good","good"),
-    POWS("pows","pows"),
+    POWS("pows","POWS"),
     ASTA_COLOUR("astaColour","asta-colour"),
-    CAPSAICIN("capsaicin","capsaicin");
+    CAPSAICIN("capsaicin","capsaicin"),
+    MIP("mip","MIP"),
+    AFLATOXIN("aflatoxin","Aflatoxin");
 
     private final String analysisName;
     private final String reportName;
