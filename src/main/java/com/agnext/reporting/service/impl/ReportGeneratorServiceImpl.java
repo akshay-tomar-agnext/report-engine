@@ -56,8 +56,8 @@ public class ReportGeneratorServiceImpl implements ReportGeneratorService {
         LocalDate finalStartDate = startDate;
         List<ScanReportModel> reportModels = reportEntities
                 .stream()
-                .filter(scanReportEntity -> (StringToDate(scanReportEntity.getCreatedOnDate()).isAfter(finalStartDate) &&
-                        (StringToDate(scanReportEntity.getCreatedOnDate()).isBefore(endDate))))
+                .filter(scanReportEntity -> Long.parseLong(scanReportEntity.getCreatedOn()) >= toEpochMillis(LocalDate.from(finalStartDate)) &&
+                        Long.parseLong(scanReportEntity.getCreatedOn()) <= toEpochMillis(LocalDate.from(endDate)))
                 .map(mapStructMapper::ScanReportEntityToScanReportModel)
                 .collect(Collectors.toList());
 
