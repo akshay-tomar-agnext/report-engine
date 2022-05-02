@@ -31,7 +31,6 @@ public class EmailSenderServiceImpl implements EmailSenderService {
             RestTemplate restTemplate = new RestTemplate();
             LinkedMultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
             map.add("files", new FileSystemResource(convertInputStreamToFile(inputStream)));
-            emailData.setEmailContent(emailData.getEmailContent() + " " + LocalDate.now(ZoneId.of(Constants.DEFAULT_ZONE)) + ".");
             notificationData.setNotificationTypeId(2);
             notificationData.setEmail(emailData);
             map.add("data", notificationData);

@@ -452,7 +452,7 @@ details:
      cronExpression: 0 0 5 * * ?
      from: support@agnext.in
      subject: KCS Daily Report
-     content: Below attached the report for the scans posted before
+     content: Below attached the report for all the posted scans.
      emails:
        - akshay.tomar@agnext.in
        - karnataka.supervisor1@agnext.in
@@ -468,7 +468,7 @@ details:
      cronExpression: 0 15 5 ? * MON,FRI
      from: support@agnext.in
      subject: MCS Daily Report
-     content: Below attached the report for the scans posted before
+     content: Below attached the report for all the posted scans.
      emails:
          - akshay.tomar@agnext.in
          - anand.botla@agnext.in
@@ -515,7 +515,7 @@ spring:
     password: Agnext@2019#
   data:
     cassandra:
-      contact-points: 10.0.1.21
+      contact-points: localhost
       port: 9042
       keyspace-name: reporting_dev
       local-datacenter: datacenter1
