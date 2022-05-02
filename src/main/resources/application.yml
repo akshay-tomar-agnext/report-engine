@@ -515,7 +515,7 @@ spring:
     password: Agnext@2019#
   data:
     cassandra:
-      contact-points: localhost
+      contact-points: 10.0.1.21
       port: 9042
       keyspace-name: reporting_dev
       local-datacenter: datacenter1
