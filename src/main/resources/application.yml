@@ -449,7 +449,7 @@ details:
    KCS:
      customerId: 213
      frequency: from day 1
-     cronExpression: 0 30 4 * * ?
+     cronExpression: 0 15 5 * * ?
      from: support@agnext.in
      subject: KCS Daily Report
      content: Below attached the report for all the posted scans.
