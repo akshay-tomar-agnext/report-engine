@@ -454,7 +454,6 @@ details:
      subject: KCS Daily Report
      content: Below attached the report for all the posted scans.
      emails:
-       - akshay.tomar@agnext.in
        - karnataka.supervisor1@agnext.in
        - anand.botla@agnext.in
        - jasdeep.kaur@agnext.in
@@ -470,7 +469,6 @@ details:
      subject: MCS Daily Report
      content: Below attached the report for all the posted scans.
      emails:
-         - akshay.tomar@agnext.in
          - anand.botla@agnext.in
          - parmeshwar.landge@agnext.in
          - hardeep.singh@agnext.in
